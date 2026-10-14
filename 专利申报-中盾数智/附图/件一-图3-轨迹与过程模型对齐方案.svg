@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" width="1100" height="560">
+<rect x="0" y="0" width="1100" height="560" fill="#ffffff"/>
+<defs>
+<marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0.5 L10 5 L0 9.5 Z" fill="#000000"/>
+</marker>
+</defs>
+
+<g stroke="#000000" stroke-width="1.6" fill="#ffffff">
+<rect x="160" y="120" width="80" height="48"/>
+<rect x="248" y="120" width="80" height="48"/>
+<rect x="336" y="120" width="80" height="48"/>
+<rect x="424" y="120" width="80" height="48"/>
+<rect x="512" y="120" width="80" height="48"/>
+<rect x="600" y="120" width="80" height="48"/>
+<rect x="864" y="120" width="80" height="48"/>
+<rect x="952" y="120" width="80" height="48"/>
+<rect x="1040" y="120" width="0" height="0" stroke="none"/>
+
+<rect x="160" y="360" width="80" height="48"/>
+<rect x="248" y="360" width="80" height="48"/>
+<rect x="336" y="360" width="80" height="48"/>
+<rect x="424" y="360" width="80" height="48"/>
+<rect x="512" y="360" width="80" height="48"/>
+<rect x="688" y="360" width="80" height="48"/>
+<rect x="776" y="360" width="80" height="48"/>
+<rect x="864" y="360" width="80" height="48"/>
+<rect x="952" y="360" width="80" height="48"/>
+
+<rect x="688" y="120" width="80" height="48" stroke-dasharray="6 4"/>
+<rect x="600" y="360" width="80" height="48" stroke-dasharray="6 4"/>
+</g>
+
+<g stroke="#000000" stroke-width="1.6" fill="none">
+<path d="M200 168 L200 360"/>
+<path d="M160 258 L240 258 M160 270 L240 270"/>
+<path d="M288 168 L288 360"/>
+<path d="M248 258 L328 258 M248 270 L328 270"/>
+<path d="M376 168 L376 360"/>
+<path d="M336 258 L416 258 M336 270 L416 270"/>
+<path d="M464 168 L464 360"/>
+<path d="M424 258 L504 258 M424 270 L504 270"/>
+<path d="M552 168 L552 360"/>
+<path d="M512 258 L592 258 M512 270 L592 270"/>
+<path d="M816 168 L816 360"/>
+<path d="M776 258 L856 258 M776 270 L856 270"/>
+<path d="M904 168 L904 360"/>
+<path d="M864 258 L944 258 M864 270 L944 270"/>
+<path d="M992 168 L992 360"/>
+<path d="M952 258 L1032 258 M952 270 L1032 270"/>
+</g>
+
+<g fill="#000000" font-family="SimSun, Songti SC, serif" font-size="15" text-anchor="middle">
+<text x="200" y="152">签到</text>
+<text x="288" y="152">接警受理</text>
+<text x="376" y="152">出车</text>
+<text x="464" y="152">到达现场</text>
+<text x="552" y="152">现场处置</text>
+<text x="640" y="152">翻越护栏</text>
+<text x="728" y="152">≫</text>
+<text x="816" y="152">现场勘查</text>
+<text x="904" y="152">返回</text>
+<text x="992" y="152">归档</text>
+
+<text x="200" y="392">签到</text>
+<text x="288" y="392">接警受理</text>
+<text x="376" y="392">出车</text>
+<text x="464" y="392">到达现场</text>
+<text x="552" y="392">现场处置</text>
+<text x="640" y="392">≫</text>
+<text x="728" y="392">请示批准</text>
+<text x="816" y="392">现场勘查</text>
+<text x="904" y="392">返回</text>
+<text x="992" y="392">归档</text>
+
+<text x="60" y="152">轨迹 σ</text>
+<text x="60" y="392">过程模型 M</text>
+
+<text x="640" y="468">日志移动 n_l = 1</text>
+<text x="728" y="468">模型移动 n_m = 1</text>
+<text x="880" y="468">同步移动 n_s = 8</text>
+
+<text x="200" y="520" text-anchor="start">注：双横线表示同步移动；虚线框内 ≫ 表示该侧无对应活动</text>
+<text x="550" y="46" font-size="16">图 3</text>
+</g>
+</svg>

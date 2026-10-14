@@ -1,0 +1,121 @@
+---
+title: 中盾数智 · 公共安全大模型数据供给方案
+icon: 🛡️
+---
+
+<Callout icon="💡" blockColor="light_blue" borderColor="blue">
+    一句话：大模型进公共安全，卡点不在算法，在数据供给侧。我们不造数据，我们把真实世界本身变成数据生产线。
+</Callout>
+
+## 一、问题的本质：数据供给侧的结构性缺失
+
+大模型进入公共安全，真正的瓶颈在<Mark bold>数据供给侧的结构性缺失</Mark>，具体表现为两处断层——一处让数据"没被记下来"，一处让数据"造不出来"。两者叠加，构成一个死结。
+
+### 断层一 · 过程不可观测
+
+设备与设备之间、设备与流程之间、流程与人之间的真实运行态，缺乏<Mark bold>统一时钟</Mark>与<Mark bold>统一语义</Mark>下的全量留痕。数据确实发生过，却没有被以可计算的方式记录下来——事后再怎么整理，也补不回当时的时序关系与状态跃迁。
+
+### 断层二 · 语料不可获得
+
+该领域属于典型的<Mark bold>零样本、强监管、不可再生</Mark>数据域：既无法从公开语料迁移，也无法靠仿真合成补齐。这个领域的第一份数据，只能来自真实业务本身。
+
+<Callout icon="⚠️" blockColor="light_orange" borderColor="orange">
+    死结在于：公开语料迁移不了，仿真合成补不齐，而真实过程又没被记录下来。绕开这个死结的唯一方式，是让真实过程在被记录的那一刻，就已经是数据。
+</Callout>
+
+---
+
+## 二、我们的解法：把真实世界本身变成数据生产线
+
+中盾数智不做数据合成，而是把真实世界本身变成数据生产线：以「指挥者（Commander）」的定位内嵌于执法流程与智能硬件的协同链路，对每一次硬件间数据交互、每一次流程状态跃迁，执行三段式处理——
+
+<NumberedList>
+    <Mark bold>旁路无侵入采集</Mark>　不介入、不改写原有业务流程与设备行为，采集行为对业务完全透明
+</NumberedList>
+
+<NumberedList>
+    <Mark bold>统一时空对齐</Mark>　跨设备、跨系统在统一时钟与统一坐标系下可比，时序关系可还原
+</NumberedList>
+
+<NumberedList>
+    <Mark bold>语义归一化</Mark>　异构协议与异构数据模型归一到统一业务语义，跨设备事件可关联
+</NumberedList>
+
+最终在<Mark bold>业务发生的同一时刻</Mark>完成结构化落库——数据不是在业务结束后被追溯整理出来的，而是在业务发生的同一刻被生成的。
+
+直接产出 <Mark bold>AI Data + Processing Double Ready</Mark> 的高质量数据集与指令集。
+
+<Callout icon="⚙️" blockColor="light_green" borderColor="green">
+    Double Ready 拆解：Data-Ready 指轨迹、语料、偏好对与评测基准；Processing-Ready 指指令集、可回放沙箱与工具调用轨迹。数据拿来即可训，能力拿来即可跑。
+</Callout>
+
+两大产品<Mark bold>原生支持 MCP-Server</Mark>，Agent 可直接接入、即插即用。
+
+---
+
+## 三、三句话讲清差异
+
+<Table>
+    <TableRow>
+        <TableCell>
+            <Mark bold>维度</Mark>
+        </TableCell>
+        <TableCell>
+            <Mark bold>常规做法</Mark>
+        </TableCell>
+        <TableCell>
+            <Mark bold>中盾数智</Mark>
+        </TableCell>
+    </TableRow>
+    <TableRow>
+        <TableCell>
+            数据来源
+        </TableCell>
+        <TableCell>
+            造数据
+        </TableCell>
+        <TableCell>
+            <Mark bold>采集真实过程</Mark>
+        </TableCell>
+    </TableRow>
+    <TableRow>
+        <TableCell>
+            交付形态
+        </TableCell>
+        <TableCell>
+            交付系统
+        </TableCell>
+        <TableCell>
+            <Mark bold>可训练的数据资产 + 可执行的处理能力</Mark>
+        </TableCell>
+    </TableRow>
+    <TableRow>
+        <TableCell>
+            接入方式
+        </TableCell>
+        <TableCell>
+            接口私有
+        </TableCell>
+        <TableCell>
+            <Mark bold>原生 MCP，任何 Agent 即插即用</Mark>
+        </TableCell>
+    </TableRow>
+</Table>
+
+---
+
+## 四、可直接引用的收口表述
+
+<BlockQuote>
+    别人在造数据，我们在采集真实过程。
+
+    别人交付系统，我们交付可训练的数据资产与可执行的处理能力。
+
+    别人的接口是私有的，我们原生 MCP——任何 Agent 即插即用。
+</BlockQuote>
+
+<Divider blockColor="light_grey" />
+
+<Paragraph textAlign="right">
+    <Mark color="grey">中盾数智 · 核心叙事定稿 · 2026-09-23</Mark>
+</Paragraph>

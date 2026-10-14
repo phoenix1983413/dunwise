@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中盾数智 · 技术叙事（研发术语版）</title>
+<style>
+:root{
+  --bg:#0A0C0E;
+  --surface:#12161A;
+  --surface-2:#171C21;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --tx:#E9EDF0;
+  --tx-2:#98A2AA;
+  --tx-3:#6B757C;
+  --teal:#3DD8AC;
+  --teal-dim:rgba(61,216,172,.10);
+  --amber:#E8B457;
+  --amber-dim:rgba(232,180,87,.10);
+  --serif:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --w:940px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"kern" 1;
+}
+::selection{background:var(--teal);color:#062B21}
+
+/* ---------- scroll progress ---------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--teal);z-index:99;transition:width .1s linear}
+
+/* ---------- topbar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;
+  background:rgba(10,12,14,.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3);
+}
+.brand{display:flex;align-items:center;gap:10px;color:var(--tx-2);letter-spacing:.18em}
+.brand i{width:7px;height:7px;background:var(--teal);display:block;border-radius:1px}
+.topbar .meta{font-family:var(--mono);letter-spacing:.08em}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--w);margin:0 auto;padding:0 40px}
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 80px;border-bottom:1px solid var(--line)}
+.kicker{
+  font-family:var(--mono);font-size:11px;letter-spacing:.28em;
+  color:var(--teal);text-transform:uppercase;margin-bottom:28px;
+}
+h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(38px,6.2vw,68px);
+  line-height:1.14;letter-spacing:-.01em;
+  margin-bottom:28px;
+}
+h1 em{font-style:normal;color:var(--teal);border-bottom:2px solid rgba(61,216,172,.35);padding-bottom:2px}
+.hero .lede{
+  font-size:17px;color:var(--tx-2);max-width:640px;line-height:1.9;margin-bottom:40px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:44px}
+.chip{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  padding:6px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--tx-2);
+}
+.chip.on{border-color:rgba(61,216,172,.45);color:var(--teal);background:var(--teal-dim)}
+.meta-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);
+}
+.meta-row div{background:var(--bg);padding:16px 18px}
+.meta-row dt{font-size:11px;letter-spacing:.16em;color:var(--tx-3);text-transform:uppercase;margin-bottom:6px;font-family:var(--mono)}
+.meta-row dd{font-size:14px;color:var(--tx)}
+
+/* ---------- section head ---------- */
+.sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:44px}
+.sec-head .num{
+  font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.1em;
+  padding-top:6px;
+}
+.sec-head h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,34px);
+  line-height:1.3;letter-spacing:-.01em;
+}
+.sec-head .sub{
+  font-size:13px;color:var(--tx-3);letter-spacing:.06em;margin-left:auto;
+  text-align:right;max-width:260px;line-height:1.6;
+}
+
+/* ---------- blocks ---------- */
+.block{
+  background:var(--surface);border:1px solid var(--line);
+  padding:32px 34px;border-radius:2px;
+}
+.block + .block{margin-top:16px}
+.pull{
+  border-left:2px solid var(--teal);
+  padding:6px 0 6px 26px;
+  font-family:var(--serif);font-size:clamp(18px,2.3vw,22px);line-height:1.75;
+  color:var(--tx);
+}
+p.body{color:var(--tx-2);font-size:15.5px;line-height:1.95}
+p.body + p.body{margin-top:18px}
+strong{color:var(--tx);font-weight:600}
+b{color:var(--teal);font-weight:600}
+
+/* copy button */
+.copybar{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line-strong);color:var(--tx-2);
+  padding:9px 16px;border-radius:2px;cursor:pointer;transition:.2s;
+}
+.btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-dim)}
+.btn.done{border-color:var(--teal);color:var(--teal)}
+
+/* ---------- walls (痛点) ---------- */
+.walls{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.wall{background:var(--surface);border:1px solid var(--line);padding:30px 32px;position:relative}
+.wall::before{content:"";position:absolute;top:0;left:0;width:34px;height:2px;background:var(--amber)}
+.wall h3{font-family:var(--serif);font-weight:400;font-size:21px;margin-bottom:14px}
+.wall .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--amber);margin-bottom:14px;display:block}
+.wall p{font-size:14.5px;color:var(--tx-2);line-height:1.9}
+.wall .out{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--tx-3)}
+.wall .out b{display:block;margin-bottom:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--tx-3);font-weight:400}
+
+/* ---------- pipeline ---------- */
+.pipe{position:relative;padding-left:44px}
+.pipe::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:1px;background:var(--line-strong)}
+.step{position:relative;padding:0 0 30px}
+.step:last-child{padding-bottom:0}
+.step::before{
+  content:"";position:absolute;left:-38px;top:11px;width:9px;height:9px;
+  background:var(--bg);border:1.5px solid var(--teal);border-radius:50%;
+}
+.step h4{font-size:16px;font-weight:600;color:var(--tx);margin-bottom:6px;letter-spacing:.01em}
+.step p{font-size:14.5px;color:var(--tx-2);line-height:1.9}
+
+/* ---------- tech cards ---------- */
+.tech{display:flex;flex-direction:column;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--teal)}
+.card-head{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  padding:24px 30px;border-bottom:1px solid var(--line);
+}
+.card-head .code{font-family:var(--mono);font-size:19px;color:var(--teal);letter-spacing:.02em;font-weight:500}
+.card-head .cn{font-family:var(--serif);font-size:19px;color:var(--tx)}
+.card-head .en{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--tx-3);letter-spacing:.1em}
+.card-body{padding:8px 30px 26px}
+.li{display:flex;gap:16px;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.06);font-size:14.5px;line-height:1.9;color:var(--tx-2)}
+.li:last-child{border-bottom:0}
+.li .k{
+  flex:0 0 116px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--tx-3);padding-top:5px;
+}
+.li .v strong{color:var(--tx)}
+.memo{
+  margin-top:22px;background:var(--teal-dim);border:1px solid rgba(61,216,172,.28);
+  padding:16px 20px;font-size:14.5px;color:var(--tx);line-height:1.8;
+}
+.memo span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--teal);display:block;margin-bottom:8px}
+
+/* ---------- double ready ---------- */
+.dr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dr-col{background:var(--surface);border:1px solid var(--line);padding:30px 32px;position:relative}
+.dr-col::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal)}
+.dr-col h3{font-family:var(--serif);font-weight:400;font-size:20px;margin-bottom:6px}
+.dr-col .en{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--teal);margin-bottom:18px;display:block}
+.dr-col p{font-size:14px;color:var(--tx-2);line-height:1.9;margin-bottom:20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{
+  font-size:12.5px;padding:5px 11px;border:1px solid var(--line-strong);
+  border-radius:2px;color:var(--tx-2);
+}
+.dr-note{
+  margin-top:16px;text-align:center;font-family:var(--serif);font-size:17px;color:var(--tx-2);
+  padding:22px;border:1px dashed var(--line-strong);
+}
+.dr-note b{color:var(--teal)}
+
+/* ---------- table ---------- */
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+thead th{
+  text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tx-3);font-weight:400;
+  padding:0 18px 14px;border-bottom:1px solid var(--line-strong);
+}
+tbody td{padding:16px 18px;border-bottom:1px solid var(--line);color:var(--tx-2);vertical-align:top;line-height:1.85}
+tbody tr{transition:background .18s}
+tbody tr:hover{background:var(--surface)}
+tbody td:first-child{color:var(--tx);font-weight:600;white-space:nowrap}
+tbody td:first-child code{font-family:var(--mono);font-size:13px;color:var(--teal);font-weight:400}
+tbody td:last-child{color:var(--tx)}
+
+/* ---------- closing statements ---------- */
+.stmts{display:flex;flex-direction:column;gap:0}
+.stmt{
+  display:flex;gap:28px;padding:34px 0;border-bottom:1px solid var(--line);align-items:baseline;
+}
+.stmt:last-child{border-bottom:0}
+.stmt .n{
+  font-family:var(--mono);font-size:13px;color:var(--teal);
+  flex:0 0 44px;padding-top:10px;
+}
+.stmt p{
+  font-family:var(--serif);font-size:clamp(19px,2.6vw,25px);line-height:1.65;color:var(--tx);
+}
+.stmt p .hl{color:var(--teal)}
+
+/* ---------- todo ---------- */
+.todo{
+  background:var(--amber-dim);border:1px solid rgba(232,180,87,.3);
+  padding:26px 30px;border-radius:2px;
+}
+.todo h3{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--amber);text-transform:uppercase;margin-bottom:16px;font-weight:400}
+.todo li{list-style:none;display:flex;gap:12px;font-size:14.5px;color:var(--tx-2);line-height:1.85;padding:7px 0}
+.todo li::before{content:"—";color:var(--amber);flex:0 0 auto}
+
+/* ---------- rail nav ---------- */
+.rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px}
+.rail a{
+  display:block;width:8px;height:8px;border:1px solid var(--tx-3);border-radius:50%;
+  transition:.25s;position:relative;
+}
+.rail a:hover,.rail a.act{background:var(--teal);border-color:var(--teal)}
+.rail a::after{
+  content:attr(data-l);position:absolute;right:20px;top:-4px;
+  font-size:11px;letter-spacing:.1em;color:var(--tx-2);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.rail a:hover::after{opacity:1}
+
+footer{padding:56px 0 90px;color:var(--tx-3);font-size:12px;letter-spacing:.1em;font-family:var(--mono);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:820px){
+  .wrap,.topbar{padding-left:22px;padding-right:22px}
+  .rail{display:none}
+  section{padding:60px 0}
+  .hero{padding:64px 0 56px}
+  .sec-head{flex-wrap:wrap;gap:10px}
+  .sec-head .sub{margin-left:0;text-align:left;max-width:none}
+  .dr{grid-template-columns:1fr}
+  .li{flex-direction:column;gap:4px}
+  .li .k{flex:none;padding-top:0}
+  .stmt{gap:14px}
+}
+@media print{
+  body{background:#fff;color:#111}
+  .progress,.rail,.topbar,.copybar{display:none}
+  section{page-break-inside:avoid;border-color:#ddd}
+  .block,.card,.wall,.dr-col{background:#fafafa;border-color:#ddd}
+  .tx,.tx-2,h1,h2,h3,.stmt p{color:#111!important}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+
+<header class="topbar">
+  <div class="brand"><i></i>中盾数智 · 技术叙事</div>
+  <div class="meta">v1.0 / 2026.09.20</div>
+</header>
+
+<nav class="rail" id="rail">
+  <a href="#s1" data-l="一句话版"></a>
+  <a href="#s2" data-l="标准版"></a>
+  <a href="#s3" data-l="两道硬墙"></a>
+  <a href="#s4" data-l="数据生产线"></a>
+  <a href="#s5" data-l="关键技术"></a>
+  <a href="#s6" data-l="双就绪"></a>
+  <a href="#s7" data-l="术语弹药库"></a>
+  <a href="#s8" data-l="口头答辩"></a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">Dunwise · AI Data Foundation</p>
+    <h1>把真实世界<br>变成<em>数据生产线</em></h1>
+    <p class="lede">
+      大模型进入公共安全，卡点不在模型能力，而在数据供给侧：过程不可观测、语料不可获得。
+      我们不做数据合成——我们采集真实过程。
+    </p>
+    <div class="chips">
+      <span class="chip on">Commander-in-the-loop</span>
+      <span class="chip">Event Sourcing</span>
+      <span class="chip">Trajectory</span>
+      <span class="chip">Process-as-Label</span>
+      <span class="chip">Batch-Streaming Unified</span>
+      <span class="chip">MCP-Server</span>
+      <span class="chip on">Double Ready</span>
+    </div>
+    <dl class="meta-row">
+      <div><dt>阅读对象</dt><dd>甲方高层 / 决策层</dd></div>
+      <div><dt>文档性质</dt><dd>技术叙事口径</dd></div>
+      <div><dt>版本</dt><dd>v1.0</dd></div>
+      <div><dt>日期</dt><dd>2026-09-20</dd></div>
+    </dl>
+  </div>
+</div>
+
+<!-- ================= 01 一句话版 ================= -->
+<section id="s1">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">01</span>
+      <h2>一句话版</h2>
+      <span class="sub">电梯陈述 · 30 秒</span>
+    </div>
+    <div class="rv">
+      <div class="pull">
+        公共安全大模型的卡点，不在模型能力，而在<b>过程不可观测、语料不可获得</b>。<br>
+        中盾数智以<b>指挥者视角</b>，把智能硬件间的每一次数据交互、执法流程的每一次状态跃迁，
+        实时转化为<b>轨迹级、原生带标注</b>的数据资产，交付 AI Data + Processing
+        <b>Double Ready</b> 的高质量数据集与指令集——<br>
+        让每一次真实出警，都成为模型的一次训练。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 标准版 ================= -->
+<section id="s2">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">02</span>
+      <h2>标准版</h2>
+      <span class="sub">一段话 · 可直接粘入方案正文</span>
+    </div>
+    <div class="block rv">
+      <p class="body" id="stdcopy">大模型进入公共安全，真正的瓶颈在<strong>数据供给侧的结构性缺失</strong>：一是<strong>过程不可观测</strong>——设备与设备、设备与流程、流程与人之间的真实运行态，缺乏统一时钟与统一语义下的全量留痕；二是<strong>语料不可获得</strong>——该领域属于典型的<strong>零样本、强监管、不可再生</strong>数据域，既无法从公开语料迁移，也无法靠仿真合成补齐。中盾数智不做数据合成，而是<strong>把真实世界本身变成数据生产线</strong>：以指挥者（Commander）身份内嵌于执法流程与智能硬件的协同链路，对每一次硬件间数据交互、每一次流程状态跃迁执行<strong>旁路无侵入采集 + 统一时空对齐 + 语义归一化</strong>，在业务发生的同一时刻完成结构化落库，直接产出 <strong>AI Data + Processing Double Ready</strong> 的高质量数据集与指令集。两大产品<strong>原生支持 MCP-Server</strong>，Agent 可直接接入、即插即用。</p>
+      <div class="copybar">
+        <span style="font-size:12.5px;color:var(--tx-3);font-family:var(--mono);letter-spacing:.06em">约 320 字 · 适合方案正文 / 汇报材料首段</span>
+        <button class="btn" id="copyBtn">复制正文</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 两道硬墙 ================= -->
+<section id="s3">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">03</span>
+      <h2>痛点：数据供给侧的两道硬墙</h2>
+      <span class="sub">为什么通用路线走不通</span>
+    </div>
+    <div class="walls">
+      <div class="wall rv">
+        <span class="tag">Wall 01</span>
+        <h3>过程不可观测</h3>
+        <p>全域运行态缺乏统一时钟基准与统一语义模型，无法形成可回溯的过程级留痕。</p>
+        <div class="out"><b>后果</b>模型只能看到"结果"，学不到"过程"；异常与博弈样本无从捕获。</div>
+      </div>
+      <div class="wall rv">
+        <span class="tag">Wall 02</span>
+        <h3>语料不可获得</h3>
+        <p>零样本、强监管、不可再生数据域；不满足公开语料迁移条件，亦不具备仿真合成的保真度。</p>
+        <div class="out"><b>后果</b>训练数据永远缺位，模型能力被锁死在通用语料上限。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 数据生产线 ================= -->
+<section id="s4">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <h2>解法：五步构成一条数据生产线</h2>
+      <span class="sub">不是造数据，是采集真实过程</span>
+    </div>
+    <div class="pipe">
+      <div class="step rv">
+        <h4>以指挥者身份介入（Commander-in-the-loop）</h4>
+        <p>不做旁观式埋点，而是以指挥视角贯通硬件协同链路与执法流程链路。</p>
+      </div>
+      <div class="step rv">
+        <h4>旁路无侵入采集</h4>
+        <p>不改动既有系统、不影响生产链路，实现零侵入接入。</p>
+      </div>
+      <div class="step rv">
+        <h4>统一时空对齐</h4>
+        <p>多源异构设备时戳归一，交互序列在统一时间轴上严格对齐。</p>
+      </div>
+      <div class="step rv">
+        <h4>语义归一化</h4>
+        <p>以执法流程本体（Ontology）为基准做语义映射，跨厂商、跨型号数据口径一致。</p>
+      </div>
+      <div class="step rv">
+        <h4>业务同时刻落库</h4>
+        <p>数据在业务发生的那一刻即完成结构化，<b>标注天然生成</b>——无需事后人工标注。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 三大关键技术 ================= -->
+<section id="s5">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">05</span>
+      <h2>三大关键技术</h2>
+      <span class="sub">TFA / UDA / MCP-Native</span>
+    </div>
+    <div class="tech">
+
+      <div class="card rv">
+        <div class="card-head">
+          <span class="code">TFA</span>
+          <span class="cn">全域过程可回溯采集引擎</span>
+          <span class="en">Traceable Full-process Agent</span>
+        </div>
+        <div class="card-body">
+          <div class="li"><span class="k">设计范式</span><span class="v"><strong>Event Sourcing（事件溯源）+ 旁路镜像</strong>。不记录"当前状态"，而记录"每一次变化"，因此过程可完整回放、可逐帧复现。</span></div>
+          <div class="li"><span class="k">三统一</span><span class="v"><strong>统一时钟</strong>（多源异构设备时戳归一）、<strong>统一语义</strong>（执法流程本体建模 / Ontology）、<strong>统一血缘</strong>（数据血缘 Lineage 全链路可追溯、可审计）。</span></div>
+          <div class="li"><span class="k">产出物</span><span class="v">不是日志，而是<strong>过程级轨迹（Trajectory）</strong>：每一次交互都是一条带上下文、带因果链、带结果反馈的可训练样本。</span></div>
+          <div class="li"><span class="k">核心红利</span><span class="v"><strong>Process-as-Label（过程即标注）</strong>——标注在业务发生的那一刻天然生成，从根上解决公共安全领域"标注成本高于数据价值"的成本倒挂问题。</span></div>
+        </div>
+        <div class="memo" style="margin:0 30px 26px"><span>记住这一句</span>别人产日志，我们产轨迹；别人事后标注，我们过程即标注。</div>
+      </div>
+
+      <div class="card rv">
+        <div class="card-head">
+          <span class="code">UDA</span>
+          <span class="cn">统一数据计算底座</span>
+          <span class="en">Unified Data Analytics</span>
+        </div>
+        <div class="card-body">
+          <div class="li"><span class="k">批流一体</span><span class="v"><strong>Unified Batch-Streaming</strong>：同一套 SQL / 算子逻辑同时覆盖历史批算与实时流算，消除 Lambda 架构"批流双链路口径不一致、需长期对账"的<strong>系统性缺陷</strong>。</span></div>
+          <div class="li"><span class="k">弹性扩展</span><span class="v"><strong>万亿级规模 + 存算分离</strong>：数据规模跨数量级增长时算力按需伸缩，峰值负载不构成瓶颈。</span></div>
+          <div class="li"><span class="k">双模开发</span><span class="v"><strong>Code + Canvas</strong>：既能写代码（Python / SQL / DAG 编排，面向算法团队），也能拖拽算子（可视化算子编排，面向业务与指挥人员），<strong>共用同一套执行引擎</strong>，开发效率与治理口径不分裂。</span></div>
+          <div class="li"><span class="k">场景定制</span><span class="v">分析模型随场景灵活定制，算子可复用、可组合、可沉淀为<strong>行业算子库</strong>，新场景以"拼装"而非"从零开发"的方式交付。</span></div>
+        </div>
+        <div class="memo" style="margin:0 30px 26px"><span>记住这一句</span>一个引擎，两套开发形态；新场景交付是拼装，不是开发。</div>
+      </div>
+
+      <div class="card rv">
+        <div class="card-head">
+          <span class="code">MCP-Native</span>
+          <span class="cn">Agent 原生接入</span>
+          <span class="en">Model Context Protocol</span>
+        </div>
+        <div class="card-body">
+          <div class="li"><span class="k">标准暴露</span><span class="v">两大产品<strong>原生内置 MCP-Server</strong>：数据侧以<strong>工具（Tool）</strong>形态、处理侧以<strong>动作（Action）</strong>形态，按标准协议对外暴露。</span></div>
+          <div class="li"><span class="k">零成本集成</span><span class="v">无需私有适配层，<strong>无集成成本，Agent 可直接接入</strong>、即插即用。</span></div>
+          <div class="li"><span class="k">战略含义</span><span class="v">我们交付的不是"一个系统"，而是<strong>可被任意智能体编排的数据能力面与算力能力面</strong>——Agent 生态越繁荣，底座价值越高。</span></div>
+        </div>
+        <div class="memo" style="margin:0 30px 26px"><span>记住这一句</span>别人的接口是私有的，我们原生 MCP，任何 Agent 即插即用。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 Double Ready ================= -->
+<section id="s6">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">06</span>
+      <h2>Double Ready 的技术含义</h2>
+      <span class="sub">数据拿起来就能训，指令集拿起来就能跑</span>
+    </div>
+    <div class="dr">
+      <div class="dr-col rv">
+        <h3>数据就绪</h3>
+        <span class="en">DATA-READY</span>
+        <p>数据即语料：原生带标注、带因果链、带反馈信号，<strong>开箱可训</strong>。</p>
+        <div class="tags">
+          <span>轨迹数据集</span>
+          <span>SFT 语料</span>
+          <span>偏好对 RLHF Pair</span>
+          <span>领域评测基准 Benchmark</span>
+        </div>
+      </div>
+      <div class="dr-col rv">
+        <h3>处理就绪</h3>
+        <span class="en">PROCESSING-READY</span>
+        <p>数据即环境：携带可回放的执行上下文，<strong>开箱可跑</strong>。</p>
+        <div class="tags">
+          <span>指令集</span>
+          <span>可回放沙箱</span>
+          <span>Tool-use Trace</span>
+          <span>可复现环境 Environment</span>
+        </div>
+      </div>
+    </div>
+    <div class="dr-note rv">Double Ready = <b>可训练的数据资产</b> × <b>可执行的处理能力</b></div>
+  </div>
+</section>
+
+<!-- ================= 07 术语弹药库 ================= -->
+<section id="s7">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">07</span>
+      <h2>术语弹药库</h2>
+      <span class="sub">内部使用 · 被追问时的"人话解释"</span>
+    </div>
+    <div class="rv">
+      <table>
+        <thead>
+          <tr><th>术语</th><th>人话解释</th><th>想传递的信号</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Event Sourcing</code></td><td>不记"当前是什么样"，记"每一步怎么变的"，所以过程能完整回放。</td><td>数据可复现，不是快照。</td></tr>
+          <tr><td><code>Process-as-Label</code></td><td>标注是业务运行的自然产物，不是事后雇人打的。</td><td>数据成本结构根本不同。</td></tr>
+          <tr><td><code>Trajectory</code></td><td>一条完整"前因—动作—结果"记录，正好是大模型训练要的格式。</td><td>直接对齐主流训练范式。</td></tr>
+          <tr><td><code>批流一体</code></td><td>历史和实时用同一套代码算，口径只有一个。</td><td>数据可信。</td></tr>
+          <tr><td><code>存算分离</code></td><td>存储与算力分开买、分开扩。</td><td>万亿级也撑得住。</td></tr>
+          <tr><td><code>本体建模 / Ontology</code></td><td>先把业务的"概念与关系"定义清楚，数据才有统一含义。</td><td>我们懂业务，不只是懂技术。</td></tr>
+          <tr><td><code>数据血缘 Lineage</code></td><td>每个数字都能追到它是哪来的。</td><td>强监管场景可审计。</td></tr>
+          <tr><td><code>MCP-Server</code></td><td>让 AI 智能体即插即用地调用我们的数据与算力。</td><td>不封闭，生态友好。</td></tr>
+          <tr><td><code>Double Ready</code></td><td>数据集拿起来就能训，指令集拿起来就能跑。</td><td>交付即生产力。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 口头答辩 ================= -->
+<section id="s8">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">08</span>
+      <h2>口头答辩三句</h2>
+      <span class="sub">现场收尾用 · 先说结论再说术语</span>
+    </div>
+    <div class="stmts">
+      <div class="stmt rv"><span class="n">01</span><p>别人在造数据，我们在<span class="hl">采集真实过程</span>。</p></div>
+      <div class="stmt rv"><span class="n">02</span><p>别人交付系统，我们交付<span class="hl">可训练的数据资产</span> + <span class="hl">可执行的处理能力</span>。</p></div>
+      <div class="stmt rv"><span class="n">03</span><p>别人的接口是私有的，我们<span class="hl">原生 MCP</span>，任何 Agent 即插即用。</p></div>
+    </div>
+    <div class="todo rv" style="margin-top:44px">
+      <h3>待确认项</h3>
+      <ul>
+        <li><strong>TFA</strong> 英文全称按贵司官方口径替换（本文暂用 Traceable Full-process Agent）。</li>
+        <li><strong>UDA</strong> 若已有官方中文全称（如"统一数据分析平台"），请替换本文表述。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>中盾数智 · 技术叙事 v1.0</span>
+  <span>2026-09-20 · 内部使用</span>
+</footer>
+
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var raillas = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  var secs = raillas.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    var idx = 0;
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i] && secs[i].getBoundingClientRect().top <= window.innerHeight * 0.4) idx = i;
+    }
+    raillas.forEach(function(a, i){ a.classList.toggle('act', i === idx); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var btn = document.getElementById('copyBtn');
+  if (btn) btn.addEventListener('click', function(){
+    var t = document.getElementById('stdcopy').innerText.replace(/\s*\n\s*/g, '');
+    var done = function(){ btn.textContent = '已复制'; btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = '复制正文'; btn.classList.remove('done'); }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function(){ fallback(t, done); });
+    } else { fallback(t, done); }
+  });
+  function fallback(t, cb){
+    var ta = document.createElement('textarea');
+    ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); cb(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>

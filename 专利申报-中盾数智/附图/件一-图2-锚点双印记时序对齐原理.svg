@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620">
+<rect x="0" y="0" width="900" height="620" fill="#ffffff"/>
+<defs>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0.5 L10 5 L0 9.5 Z" fill="#000000"/>
+</marker>
+<marker id="a2d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0.5 L10 5 L0 9.5 Z" fill="#000000"/>
+</marker>
+</defs>
+
+<g stroke="#000000" stroke-width="1.6" fill="none">
+<path d="M120 180 L860 180" marker-end="url(#a2)"/>
+<path d="M120 460 L860 460" marker-end="url(#a2d)"/>
+
+<path d="M240 180 L264 460" stroke-dasharray="8 5"/>
+<path d="M760 180 L813 460" stroke-dasharray="8 5"/>
+<path d="M470 180 L470 428"/>
+
+<path d="M240 430 L264 430"/>
+<path d="M232 414 L232 430 M272 414 L272 430"/>
+<path d="M760 430 L813 430"/>
+<path d="M752 414 L752 430 M821 414 L821 430"/>
+
+<path d="M512 400 L476 400" marker-end="url(#a2)"/>
+</g>
+
+<g fill="#000000" stroke="none">
+<circle cx="240" cy="180" r="5"/>
+<circle cx="264" cy="460" r="5"/>
+<circle cx="760" cy="180" r="5"/>
+<circle cx="813" cy="460" r="5"/>
+<circle cx="470" cy="180" r="5"/>
+<circle cx="470" cy="460" r="5" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<circle cx="512" cy="460" r="5"/>
+</g>
+
+<g fill="#000000" font-family="SimSun, Songti SC, serif" font-size="17">
+<text x="450" y="46" text-anchor="middle" font-size="16">图 2</text>
+
+<text x="126" y="168">业务时钟轴</text>
+<text x="126" y="490">设备本地时钟轴</text>
+
+<text x="236" y="152" text-anchor="middle">t_biz(1)</text>
+<text x="264" y="500" text-anchor="middle">t_local(1)</text>
+<text x="760" y="152" text-anchor="middle">t_biz(2)</text>
+<text x="813" y="500" text-anchor="middle">t_local(2)</text>
+
+<text x="252" y="396" text-anchor="middle">Δ(1)</text>
+<text x="786" y="396" text-anchor="middle">Δ(2)</text>
+
+<text x="470" y="152" text-anchor="middle">t_unified(k)</text>
+<text x="524" y="500" text-anchor="middle">t_local(k)</text>
+<text x="494" y="386" text-anchor="middle">补偿 Δ(t_biz)+τ</text>
+
+<text x="470" y="580" text-anchor="middle" font-size="16">同一竖线位置表示同一物理时刻</text>
+</g>
+</svg>

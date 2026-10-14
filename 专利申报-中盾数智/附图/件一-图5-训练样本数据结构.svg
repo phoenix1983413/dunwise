@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" width="900" height="720">
+<rect x="0" y="0" width="900" height="720" fill="#ffffff"/>
+
+<g stroke="#000000" stroke-width="1.6" fill="#ffffff">
+<rect x="60" y="40" width="780" height="640"/>
+<rect x="90" y="90" width="340" height="46"/>
+<rect x="470" y="90" width="340" height="46"/>
+<rect x="90" y="150" width="720" height="150"/>
+<rect x="110" y="195" width="126" height="80"/>
+<rect x="248" y="195" width="126" height="80"/>
+<rect x="386" y="195" width="126" height="80"/>
+<rect x="524" y="195" width="126" height="80"/>
+<rect x="662" y="195" width="126" height="80"/>
+<rect x="90" y="316" width="720" height="150"/>
+<rect x="110" y="361" width="126" height="80"/>
+<rect x="248" y="361" width="126" height="80"/>
+<rect x="386" y="361" width="126" height="80"/>
+<rect x="524" y="361" width="126" height="80"/>
+<rect x="662" y="361" width="126" height="80"/>
+<rect x="90" y="482" width="720" height="46"/>
+<rect x="90" y="544" width="720" height="46"/>
+<rect x="90" y="606" width="720" height="46"/>
+</g>
+
+<g stroke="#000000" stroke-width="1.6" fill="none">
+<path d="M260 136 L260 146"/>
+<path d="M640 136 L640 146"/>
+<path d="M260 300 L260 312"/>
+<path d="M640 300 L640 312"/>
+<path d="M260 466 L260 478"/>
+<path d="M640 466 L640 478"/>
+</g>
+
+<g fill="#000000" font-family="SimSun, Songti SC, serif" font-size="16" text-anchor="middle">
+<text x="76" y="70" text-anchor="start" font-size="17">训练样本</text>
+
+<text x="260" y="120">sample_id</text>
+<text x="640" y="120">case_id</text>
+<text x="106" y="174" text-anchor="start" font-size="15">trajectory[ ]</text>
+<text x="173" y="240" font-size="15">t_unified</text>
+<text x="311" y="240" font-size="15">dev_id</text>
+<text x="449" y="240" font-size="15">act_id</text>
+<text x="587" y="240" font-size="15">move</text>
+<text x="725" y="240" font-size="15">payload_ref</text>
+<text x="106" y="340" text-anchor="start" font-size="15">label{ }</text>
+<text x="173" y="406" font-size="15">type</text>
+<text x="311" y="406" font-size="15">deviation</text>
+<text x="449" y="406" font-size="15">n_sync</text>
+<text x="587" y="406" font-size="15">n_model</text>
+<text x="725" y="406" font-size="15">n_log</text>
+
+<text x="450" y="512" font-size="15">clock_calib{ offset_ms, drift_ppm, residual_std_ms }</text>
+<text x="450" y="574" font-size="15">provenance{ model_version, anchor_set_id }</text>
+<text x="450" y="636" font-size="15">weight</text>
+
+<text x="450" y="704" font-size="16">图 5</text>
+</g>
+</svg>

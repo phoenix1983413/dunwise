@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="docx-page-size" content="A4">
+  <title>人生成长计划</title>
+  <style>
+  /* 页面模型：封面无页脚，正文页脚居中页码 */
+  @page {
+    @bottom-center { content: counter(page); }
+  }
+  @page cover {
+    @bottom-center { content: none; }
+  }
+  section[role="cover"] { page: cover; }
+
+  :root {
+    --page-content-width: var(--layout-contentWidth, 15.6cm);
+
+    --fs-h1: var(--typography-fontSize-h1, 16pt);
+    --fs-h2: var(--typography-fontSize-h2, 13pt);
+    --fs-h3: var(--typography-fontSize-h3, 12pt);
+    --fs-body: 12pt;
+    --fs-small: var(--typography-fontSize-small, 10.5pt);
+    --fs-tiny: var(--typography-fontSize-tiny, 9pt);
+    --fs-cover-title: var(--typography-fontSize-title, 28pt);
+    --fs-cover-subtitle: var(--typography-fontSize-subtitle, 15pt);
+    --fs-card-value: var(--typography-fontSize-h1, 18pt);
+    --fs-card-unit: var(--typography-fontSize-small, 10.5pt);
+    --fs-card-label: var(--typography-fontSize-dataLabel, 10pt);
+
+    --ff-heading: var(--typography-fontFamily-heading, "SimHei", "黑体", sans-serif);
+    --ff-body: "宋体", SimSun, serif;
+    --ff-code: var(--typography-fontFamily-code, "Courier New", monospace);
+    --lh-body: var(--typography-lineHeight-body, 1.6);
+    --fw-bold: var(--typography-fontWeight-bold, 700);
+
+    --color-primary: var(--color-primary, #1565C0);
+    --color-secondary: var(--color-secondary, #0288D1);
+    --color-accent: var(--color-accent, #00897B);
+    --color-text: var(--color-text, #212121);
+    --color-muted: var(--color-textSecondary, #616161);
+    --color-heading: var(--color-heading, #1A237E);
+    --color-border: var(--color-divider, #E0E0E0);
+    --color-bg: var(--color-background, #FFFFFF);
+    --color-highlight: var(--color-surface, #F5F7FA);
+    --color-summary-bg: var(--color-surface, #F5F7FA);
+    --color-summary-border: var(--color-primary, #1565C0);
+    --color-on-primary: var(--color-background, #FFFFFF);
+    --color-accent-bg: var(--color-accent, #00897B);
+    --color-emphasis: var(--color-danger, #C62828);
+    --summary-border-width: 4px;
+    --radius-card: var(--spacing-block, 6px);
+
+    --spacing-xs: 0.25em;
+    --spacing-sm: 0.6em;
+    --spacing-md: 1em;
+    --spacing-lg: 1.6em;
+    --spacing-xl: 2em;
+    --spacing-paragraph: var(--spacing-paragraph, 0.75em);
+    --spacing-section: var(--spacing-section, 2em);
+    --spacing-block: var(--spacing-block, 1em);
+    --spacing-indent: 2em;
+    --margin-page: var(--layout-margin, 2.5cm);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--ff-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    max-width: var(--page-content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 封面 */
+  .cover-block { padding: var(--spacing-section) var(--margin-page); }
+  .cover-category {
+    font-size: var(--typography-fontSize-coverCategory, 13pt);
+    font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-primary); letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-lg); text-align: center;
+  }
+  .cover-title {
+    font-size: var(--fs-cover-title); font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-primary); text-align: center; margin-bottom: var(--spacing-sm);
+  }
+  .cover-subtitle {
+    font-size: var(--fs-cover-subtitle); color: var(--color-muted); text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  .cover-meta { font-size: var(--fs-small); color: var(--color-muted); text-align: center; }
+  .cover-source {
+    font-size: var(--fs-small); color: var(--color-muted); text-align: center;
+    margin-top: var(--spacing-section); border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-block);
+  }
+
+  /* 目录 */
+  .doc-toc { padding: var(--spacing-block) var(--margin-page); }
+  .toc-title {
+    font-weight: var(--fw-bold); font-size: var(--fs-h2);
+    margin-bottom: var(--spacing-sm); color: var(--color-heading);
+  }
+  .toc-list, .toc-list ol, .toc-list ul { list-style: none; list-style-type: none; padding-left: var(--spacing-sm); }
+  .toc-list > li { margin-bottom: var(--spacing-xs); text-indent: 0; }
+  .toc-list ol { padding-left: var(--spacing-lg); margin-top: var(--spacing-xs); }
+  .toc-list ol li { margin-bottom: var(--spacing-xs); font-size: var(--fs-small); }
+  .toc-list a { color: var(--color-primary); text-decoration: none; }
+
+  /* 正文 */
+  .report-body { padding: 0 var(--margin-page); }
+  .report-body h1 {
+    font-size: var(--fs-h1); font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-on-primary); background-color: var(--color-primary);
+    padding: var(--spacing-sm) var(--spacing-block);
+    margin-top: var(--spacing-section); margin-bottom: var(--spacing-paragraph);
+  }
+  .report-body h2 {
+    font-size: var(--fs-h2); font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-heading); border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-sm); margin-top: var(--spacing-section);
+    margin-bottom: var(--spacing-paragraph);
+  }
+  .report-body h3 {
+    font-size: var(--fs-h3); font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-primary); margin-top: var(--spacing-block);
+    margin-bottom: var(--spacing-paragraph);
+  }
+  .report-body p {
+    font-family: var(--ff-body); font-size: var(--fs-body); line-height: var(--lh-body);
+    text-indent: var(--spacing-indent); margin-bottom: var(--spacing-paragraph); text-align: justify;
+  }
+  .report-body ul, .report-body ol {
+    margin-bottom: var(--spacing-paragraph); margin-left: var(--spacing-indent);
+  }
+  .report-body li {
+    font-family: var(--ff-body); font-size: var(--fs-body); line-height: var(--lh-body);
+    margin-bottom: var(--spacing-xs); text-align: justify;
+  }
+  .report-body strong { color: var(--color-heading); font-weight: var(--fw-bold); }
+  .report-body code { font-family: var(--ff-code); font-size: var(--fs-small); }
+  .report-body td strong { color: var(--color-heading); }
+
+  /* 表格 */
+  table.data-table {
+    width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-paragraph);
+  }
+  table.data-table th {
+    background-color: var(--color-highlight); color: var(--color-heading);
+    font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    font-size: var(--fs-small); text-align: left;
+    padding: var(--spacing-sm) var(--spacing-block);
+    border: 1px solid var(--color-border);
+  }
+  table.data-table td {
+    font-family: var(--ff-body); font-size: var(--fs-small); line-height: 1.5;
+    padding: var(--spacing-sm) var(--spacing-block);
+    border: 1px solid var(--color-border);
+  }
+
+  /* 来源 / 口径说明（不用独立表格承载） */
+  .src-note {
+    font-family: var(--ff-body); font-size: var(--fs-tiny); color: var(--color-muted);
+    background-color: var(--color-highlight); text-indent: 0;
+    padding: var(--spacing-xs) var(--spacing-sm); margin-bottom: var(--spacing-paragraph);
+  }
+
+  /* 单段落强调 */
+  .callout-info {
+    font-family: var(--ff-body); font-size: var(--fs-body); line-height: var(--lh-body);
+    border-left: var(--summary-border-width) solid var(--color-summary-border);
+    background-color: var(--color-summary-bg);
+    text-indent: var(--spacing-indent); padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-paragraph);
+  }
+  .callout-warning {
+    font-family: var(--ff-body); font-size: var(--fs-body); line-height: var(--lh-body);
+    border-left: var(--summary-border-width) solid var(--color-accent);
+    background-color: var(--color-highlight);
+    text-indent: var(--spacing-indent); padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-paragraph);
+  }
+  .callout-title {
+    display: block; font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-heading); margin-bottom: var(--spacing-xs); text-indent: 0;
+  }
+
+  /* 执行摘要区 */
+  .executive-summary {
+    border-left: var(--summary-border-width) solid var(--color-summary-border);
+    background-color: var(--color-summary-bg);
+    padding: var(--spacing-md); margin-bottom: var(--spacing-section);
+  }
+  .summary-header { margin-bottom: var(--spacing-md); }
+  .summary-header h2 {
+    font-size: var(--fs-h2); font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    color: var(--color-heading); margin-bottom: var(--spacing-xs);
+  }
+  .summary-badge {
+    font-family: var(--ff-body); font-size: var(--fs-small);
+    color: var(--color-muted); font-style: italic;
+  }
+  table.summary-table {
+    width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-md);
+  }
+  table.summary-table td {
+    width: 25%; text-align: center; padding: var(--spacing-sm);
+    border: 1px solid var(--color-summary-border);
+    background-color: var(--color-bg);
+  }
+  .card-label {
+    display: block; font-family: var(--ff-heading); font-size: var(--fs-card-label);
+    color: var(--color-muted); margin-bottom: var(--spacing-xs);
+  }
+  .card-value {
+    display: block; font-family: var(--ff-heading); font-weight: var(--fw-bold);
+    font-size: var(--fs-card-value); color: var(--color-primary);
+  }
+  .card-unit {
+    display: block; font-family: var(--ff-body); font-size: var(--fs-card-unit);
+    color: var(--color-muted);
+  }
+  .summary-body {
+    font-family: var(--ff-body); font-size: var(--fs-body); line-height: var(--lh-body);
+    text-indent: var(--spacing-indent); text-align: justify;
+  }
+  .summary-body p { text-indent: var(--spacing-indent); margin-bottom: var(--spacing-xs); }
+
+  /* 数据强调 */
+  .data-emphasis { color: var(--color-emphasis); font-weight: var(--fw-bold); }
+
+  /* 清单 */
+  .checklist {
+    font-family: var(--ff-body); font-size: var(--fs-small); line-height: 1.8;
+    background-color: var(--color-highlight); border: 1px solid var(--color-border);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-paragraph);
+    white-space: pre-wrap;
+  }
+
+  /* 章节分隔 */
+  .section-divider {
+    border-bottom: 1px solid var(--color-border);
+    margin: var(--spacing-section) 0;
+  }
+  </style>
+</head>
+<body>
+
+  <section role="cover">
+    <div class="cover-block">
+      <p class="cover-category">个人成长体系</p>
+      <p class="cover-title">人生成长计划</p>
+      <p class="cover-subtitle">从一页手写笔记到可执行的日 / 周 / 月 / 年体系</p>
+      <p class="cover-meta">个人发展规划 · 2026</p>
+      <p class="cover-source">编制依据：一页手写笔记本中的日 / 周 / 月 / 年四条节奏承诺</p>
+    </div>
+  </section>
+
+  <section role="cover">
+    <nav class="doc-toc" aria-label="文档目录">
+      <p class="toc-title">目录</p>
+      <ol class="toc-list">
+        <li><a href="#section-1">一、总纲：一张节奏全景</a>
+          <ol>
+            <li><a href="#s1-1">1.1 四层节奏总表</a></li>
+            <li><a href="#s1-2">1.2 时间投入预算</a></li>
+            <li><a href="#s1-3">1.3 四条设计原则</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-2">二、每日节律：把 2.25 小时嵌入日常</a>
+          <ol>
+            <li><a href="#s2-1">2.1 建议时间表</a></li>
+            <li><a href="#s2-2">2.2 锻炼身体：30 分钟怎么用</a></li>
+            <li><a href="#s2-3">2.3 阅读：30 分钟的三个层次</a></li>
+            <li><a href="#s2-4">2.4 静观复盘：30 分钟的两个版本</a></li>
+            <li><a href="#s2-5">2.5 陪伴与口语交流：15 分钟的日常动作</a></li>
+            <li><a href="#s2-6">2.6 睡眠：7~8 小时是地基</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-3">三、每周节律：三条并行的增长线</a>
+          <ol>
+            <li><a href="#s3-1">3.1 专业技能：8~12 小时</a></li>
+            <li><a href="#s3-2">3.2 家人朋友沟通：2~4 小时</a></li>
+            <li><a href="#s3-3">3.3 有意义的社交：每周约见一位朋友</a></li>
+            <li><a href="#s3-4">3.4 每周收口：周日 30 分钟周检</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-4">四、每月节律：把日子连成线</a>
+          <ol>
+            <li><a href="#s4-1">4.1 完整月度复盘（占用一整天）</a></li>
+            <li><a href="#s4-2">4.2 读完一本书</a></li>
+            <li><a href="#s4-3">4.3 精神食粮：一部电影或一次深度对话</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-5">五、每年节律：一次彻底的重新校准</a>
+          <ol>
+            <li><a href="#s5-1">5.1 年度定位与规划</a></li>
+            <li><a href="#s5-2">5.2 去 1~2 个没去过的地方</a></li>
+            <li><a href="#s5-3">5.3 做一次全面体检</a></li>
+            <li><a href="#s5-4">5.4 买一件喜欢的东西或培养一个新技能</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-6">六、支撑系统：让计划不塌的四个零件</a>
+          <ol>
+            <li><a href="#s6-1">6.1 记录系统：能看见才有效</a></li>
+            <li><a href="#s6-2">6.2 习惯叠加：绑定已有习惯</a></li>
+            <li><a href="#s6-3">6.3 弹性规则：允许滑坡，禁止崩塌</a></li>
+            <li><a href="#s6-4">6.4 问责机制：让承诺具备外部性</a></li>
+          </ol>
+        </li>
+        <li><a href="#section-7">七、启动方案：第一周怎么开始</a></li>
+        <li><a href="#section-8">附录：可打印的执行清单</a></li>
+      </ol>
+    </nav>
+  </section>
+
+  <section role="body" class="report-body" data-page-restart="1">
+
+    <div class="executive-summary">
+      <div class="summary-header">
+        <h2>执行摘要</h2>
+        <span class="summary-badge">Executive Summary</span>
+      </div>
+      <table class="summary-table">
+        <tr>
+          <td>
+            <span class="card-label">每日刚性投入</span>
+            <span class="card-value">2.25</span>
+            <span class="card-unit">小时 / 天</span>
+          </td>
+          <td>
+            <span class="card-label">每周合计</span>
+            <span class="card-value">27.5</span>
+            <span class="card-unit">小时 / 周</span>
+          </td>
+          <td>
+            <span class="card-label">年度总计</span>
+            <span class="card-value">1194</span>
+            <span class="card-unit">小时 / 年</span>
+          </td>
+          <td>
+            <span class="card-label">年度等价</span>
+            <span class="card-value">6</span>
+            <span class="card-unit">个月全职学习</span>
+          </td>
+        </tr>
+      </table>
+      <div class="summary-body">
+        <p>这份计划源于一页手写笔记本。上面只有二十来行字，分成"每天、每周、每月、每年"四段，却已搭出完整的人生节奏骨架。它没有宏大志向，只有具体动作——这是它最值得被继承的地方。</p>
+        <p>本计划在此骨架上补了三样东西：<strong>刻度</strong>（每项承诺都有量化标准，可核查、可迭代）、<strong>缓冲</strong>（弹性区间与滑坡分级，让计划在意外中存活）、<strong>机制</strong>（记录、习惯叠加、问责三套支撑，不依赖意志力）。核心判断是：持续失败的计划，问题从不在目标定错，而在缺少执行机制。</p>
+      </div>
+    </div>
+
+    <h1 id="preface">写在前面</h1>
+
+    <p>这页笔记的价值在于<strong>克制</strong>。它没有写"每天学 4 小时编程"，也没有写"一周跑 5 次马拉松"。所有承诺的量级都在普通人可持续的区间内——这恰恰是它最值得被继承的地方。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>层级</th><th>原始笔记承诺</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>每天</td><td>半小时锻炼身体、半小时静观复盘、半小时阅读、7~8 小时睡眠、15 分钟陪伴与口语交流</td></tr>
+        <tr><td>每周</td><td>8~12 小时提升专业技能（AI Agent）、2~4 小时与家人朋友聊天沟通、约见一位朋友</td></tr>
+        <tr><td>每月</td><td>花一整天完整复盘、认真读完一本书（经济 / 历史 / 专业）、看一部有意义的电影或参加一次深度对话</td></tr>
+        <tr><td>每年</td><td>做一次年度定位与规划、去 1~2 个没去过的地方、做一次全面体检、买一件自己喜欢的东西或培养一个新技能</td></tr>
+      </tbody>
+    </table>
+    <p class="src-note">说明：上表为原始笔记内容的整理，量化标准与频次见第一章总表。</p>
+
+    <p>本计划要做三件事：<strong>把这份骨架写透</strong>（每一项拆解到可执行颗粒度）、<strong>补齐它缺失的支撑系统</strong>（复盘模板、记录方式、习惯养成机制、风险预案）、<strong>给它装上刻度</strong>（从"做得到"升级为"可核查、可迭代"）。请把它当作一份需要持续修订的活文档，而不是一次性读完就放下的手册。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-1">一、总纲：一张节奏全景</h1>
+
+    <h2 id="s1-1">1.1 四层节奏总表</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>层级</th><th>承诺项</th><th>量化标准</th><th>累计频次</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>日</td><td>锻炼身体</td><td>30 分钟</td><td>每周约 5 次</td></tr>
+        <tr><td>日</td><td>静观复盘</td><td>30 分钟</td><td>每日</td></tr>
+        <tr><td>日</td><td>阅读</td><td>30 分钟</td><td>每日</td></tr>
+        <tr><td>日</td><td>睡眠</td><td>7~8 小时</td><td>每日</td></tr>
+        <tr><td>日</td><td>陪伴与口语交流</td><td>15 分钟</td><td>每日</td></tr>
+        <tr><td>周</td><td>专业技能提升（AI Agent）</td><td>8~12 小时</td><td>每周 2~3 个整块</td></tr>
+        <tr><td>周</td><td>家人朋友沟通</td><td>2~4 小时</td><td>每周</td></tr>
+        <tr><td>周</td><td>有意义的社交</td><td>约见 1 位朋友</td><td>每周</td></tr>
+        <tr><td>周</td><td>运动量折算</td><td>累计 150 分钟中等强度</td><td>每周</td></tr>
+        <tr><td>月</td><td>完整月度复盘</td><td>1 整天（约 6 小时）</td><td>每月末</td></tr>
+        <tr><td>月</td><td>读完一本书</td><td>1 本（经济 / 历史 / 专业轮换）</td><td>每月</td></tr>
+        <tr><td>月</td><td>精神食粮</td><td>1 部电影或 1 次深度对话</td><td>每月</td></tr>
+        <tr><td>年</td><td>年度定位与规划</td><td>1 次（半天到 1 天）</td><td>每年年初</td></tr>
+        <tr><td>年</td><td>出行</td><td>1~2 个没去过的地方</td><td>每年</td></tr>
+        <tr><td>年</td><td>全面体检</td><td>1 次</td><td>每年</td></tr>
+        <tr><td>年</td><td>犒赏与新技能</td><td>1 次购物或 1 项技能</td><td>每年</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s1-2">1.2 时间投入预算</h2>
+
+    <p>把上面的量化标准折算成时间账，是判断"这份计划能不能塞进生活"的唯一方法。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>维度</th><th>每日投入</th><th>每周投入</th><th>每月投入</th><th>每年投入</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>身体（锻炼）</td><td>0.5 h</td><td>3 h</td><td>12 h</td><td>144 h</td></tr>
+        <tr><td>认知（阅读 + 复盘）</td><td>1.0 h</td><td>7 h</td><td>28 h</td><td>336 h</td></tr>
+        <tr><td>专业（AI Agent）</td><td>—</td><td>10 h</td><td>40 h</td><td>480 h</td></tr>
+        <tr><td>关系（家人朋友社交）</td><td>0.25 h</td><td>4 h</td><td>16 h</td><td>192 h</td></tr>
+        <tr><td>复盘与规划</td><td>0.5 h</td><td>3.5 h</td><td>6 h</td><td>42 h</td></tr>
+        <tr><td><strong>合计</strong></td><td><strong>约 2.25 h</strong></td><td><strong>约 27.5 h</strong></td><td><strong>约 102 h</strong></td><td><strong>约 1194 h</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p class="callout-info"><strong>关键结论</strong>　每日刚性投入约 2.25 小时，每周合计约 27.5 小时——接近每天多出 4 小时的有效余量。这个量级对一位在职场承担管理职责的人来说是紧张但可行的，前提是专业技能提升被整块安排在晚间或周末，而不是零散挤占。年度总计近 1200 小时，相当于多出一段约 6 个月的全职学习时长。这才是这份笔记真正承诺的东西。</p>
+
+    <h2 id="s1-3">1.3 四条设计原则</h2>
+
+    <p>这份计划能长期存活，靠的不是热情，而是下面四条自我约束。</p>
+
+    <ol>
+      <li><strong>弹性优于刚性</strong>——写"8~12 小时"而不是"10 小时"，留出 20% 的缓冲。计划必须为意外留出余地，否则第一次断档就会引发放弃。</li>
+      <li><strong>完成优于完美</strong>——每周专业技能哪怕只完成 8 小时下限，也算达标。宁可连续七周都踩下限，也不要一次冲满然后停摆三周。</li>
+      <li><strong>可核查优于可感觉</strong>——每一项都要能回答"这个月到底做到了没有"。凭感觉的承诺无法迭代。</li>
+      <li><strong>成长而非负荷</strong>——每季度末必须重新评估：这件事还在服务你的主线目标吗？不在就砍掉。</li>
+    </ol>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-2">二、每日节律：把 2.25 小时嵌入日常</h1>
+
+    <h2 id="s2-1">2.1 建议时间表</h2>
+
+    <p>时间表本身不是重点，重点是<strong>顺序</strong>：先身体、再大脑、后工作。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>时段</th><th>事项</th><th>时长</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>早晨</td><td>锻炼身体</td><td>30 分钟</td><td>有氧 + 力量，见 2.2</td></tr>
+        <tr><td>早餐后 / 通勤中</td><td>阅读</td><td>30 分钟</td><td>纸质或电子，见 2.3</td></tr>
+        <tr><td>午休</td><td>静观复盘</td><td>15 分钟</td><td>简版，见 2.4</td></tr>
+        <tr><td>晚间核心时段</td><td>专业技能（工作日）</td><td>60~90 分钟</td><td>整块时间，见第三章</td></tr>
+        <tr><td>睡前</td><td>陪伴与口语交流</td><td>15 分钟</td><td>家人或通话，见 2.5</td></tr>
+        <tr><td>睡前</td><td>静观复盘（完整版）</td><td>15 分钟</td><td>见 2.4</td></tr>
+        <tr><td>全天</td><td>保证睡眠</td><td>7~8 小时</td><td>见 2.6</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>为什么锻炼排在最前</strong>：运动对认知的促进作用需要 2~3 小时才完全显现，晨练能让整个上午的专注度上一个台阶。反过来，如果把锻炼放在深夜，它会直接偷走睡眠——而睡眠是这页笔记里排第一的底线指标。</p>
+
+    <p><strong>为什么复盘拆成两次</strong>：午休的 15 分钟是"扫描"，处理白天发生的具体事件；睡前的 15 分钟是"收敛"，把今天的经验归类进长期认知。合并成一次会导致早上和睡前各欠一次。</p>
+
+    <h2 id="s2-2">2.2 锻炼身体：30 分钟怎么用</h2>
+
+    <p>30 分钟不允许用来"随便动一动"。按<strong>有氧为主、力量为辅</strong>分配。</p>
+
+    <ul>
+      <li><strong>20 分钟有氧</strong>：跑步、快走、骑行、游泳、跳绳均可。强度标准是"能说话但不能唱歌"的中等强度，心率大致落在最大心率的 60%~70%。</li>
+      <li><strong>10 分钟力量</strong>：每周至少覆盖一次下肢（深蹲、硬拉、弓步）和一次核心（平板支撑、卷腹）。40 岁以后，力量训练的价值高于纯有氧——它保住肌肉量，而肌肉量决定基础代谢。</li>
+      <li><strong>每周组合建议</strong>：3 次有氧 + 2 次力量 + 1 次灵活性或拉伸（瑜伽、关节活动度训练）。</li>
+    </ul>
+
+    <p class="callout-warning"><strong>兜底规则</strong>　当加班或出差打断节奏时，用"10 分钟最低版本"顶上——10 组深蹲或 10 分钟快走。底线是不断，不是每天满额。一周漏掉两天可以接受，一周三天完全不动则触发连续两次"运动缺口"的告警。</p>
+
+    <h2 id="s2-3">2.3 阅读：30 分钟的三个层次</h2>
+
+    <p>30 分钟读书最常见的失败方式，是把它变成漫无目的的刷书。分层可以解决。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>层次</th><th>时长</th><th>内容类型</th><th>目的</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>温故</td><td>10 分钟</td><td>正在读的书</td><td>保持上下文连续性</td></tr>
+        <tr><td>精进</td><td>15 分钟</td><td>专业 / 经济 / 历史三条线轮换</td><td>增长认知，与月度书单衔接</td></tr>
+        <tr><td>拓展</td><td>5 分钟</td><td>与当日工作或阅读内容相关的杂文</td><td>捕捉关联，保持信息敏感度</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>书单轮换机制</strong>：每月读完一本书后，从三个池子里各取一本轮流——经济（建立对资源、周期、博弈的直觉）、历史（训练长周期因果推理，避免被短视决策绑架）、专业（直接服务 AI Agent 与技术方向）。一年下来，每个池子至少各读完 4 本。</p>
+
+    <p><strong>输出要求</strong>：每读完一本书，只写一段话——"这本书改变了我哪一个具体判断或做法"。写不出来说明读得不够深，或者这本书不值得占用这个月。</p>
+
+    <h2 id="s2-4">2.4 静观复盘：30 分钟的两个版本</h2>
+
+    <p>"静观"这个词在笔记里出现得很轻，但它其实是这份计划里<strong>最高杠杆的一项</strong>：身体、阅读、专业技能都是输入，复盘才是把输入变成能力的转换器。</p>
+
+    <p><strong>午休版（15 分钟 · 扫描）</strong></p>
+    <ol>
+      <li>今天最重要的三件事是什么，各花了多少时间？</li>
+      <li>有哪件让我烦躁的事？它本质是"事情本身"还是"我的预期"？</li>
+      <li>有没有一件事，我其实可以不做？</li>
+    </ol>
+
+    <p><strong>睡前版（15 分钟 · 收敛）</strong></p>
+    <ol>
+      <li>今天学到的一个新东西是什么？用一句话说清。</li>
+      <li>今天犯的最大错误是什么？如果重来一次改哪个动作？</li>
+      <li>明天最重要的一件事是什么？（只写一件）</li>
+    </ol>
+
+    <p><strong>执行形式</strong>：纸笔或专用笔记 App，二选一，固定下来。不建议用碎片工具记录——复盘的价值在于连续书写的思维流，不在于检索速度。</p>
+
+    <h2 id="s2-5">2.5 陪伴与口语交流：15 分钟的日常动作</h2>
+
+    <p>笔记里"每天 15 分钟、陪伴、共话口语"这几个字，可以拆成两件事。</p>
+
+    <ul>
+      <li><strong>陪伴</strong>（约 10 分钟）：与家人、伴侣或孩子的<strong>无屏幕共处时间</strong>。规则很简单——这段时间内手机不放在手边，不刷短视频，不处理工作消息。散步、做饭、饭后散步都行。</li>
+      <li><strong>口语表达</strong>（约 5 分钟）：刻意开口说英语，或用完整段落把当天一件事讲给别人听。技术管理者的通病是"想得多、说得少"，日常口语表达训练能同时改善沟通能力和认知清晰度。</li>
+    </ul>
+
+    <p><strong>判定标准</strong>：这 15 分钟里是否有持续的、非事务性的语言交流。若只是"待在同一个房间"，仍算部分达成；若全程在各自刷手机，则视为未完成。</p>
+
+    <h2 id="s2-6">2.6 睡眠：7~8 小时是地基</h2>
+
+    <p>这页笔记里，睡眠是唯一一个被明确写进"每天"清单且带时间区间的项目。它不是休息项，是<strong>认知类投资的必要前提</strong>。睡眠不足 6 小时会直接削弱第二章里的阅读效果与第三章里的专业学习效率——在睡眠债上省下的 1 小时，会以 3 小时的效率损失还回来。</p>
+
+    <p><strong>执行要点</strong></p>
+    <ol>
+      <li>固定<strong>上床时间</strong>比固定起床时间更有效，因为起床时间容易被工作侵占。</li>
+      <li>睡前 1 小时停止专业学习（大脑高唤醒状态会延迟入睡）。</li>
+      <li>睡前 15 分钟的复盘可以保留——它反而有助于情绪降落。</li>
+      <li>每周至少安排 1 个"完整睡眠周期"（约 7.5 小时），作为神经系统的周期性清理窗口。</li>
+    </ol>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-3">三、每周节律：三条并行的增长线</h1>
+
+    <h2 id="s3-1">3.1 专业技能：8~12 小时（AI Agent 方向）</h2>
+
+    <p>这是整个计划中<strong>单位时间价值最高</strong>的部分，也是最容易挤掉的部分。它排在周维度而不是日维度，原因有两点：一是它需要连续 90 分钟以上的深度注意力，日维度无法承载；二是它必须成块，否则永远被工作事务打断。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>时段</th><th>时长</th><th>安排</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>工作日晚间 × 2</td><td>90 分钟 × 2 = 3 h</td><td>学习 / 编码 / 实验</td></tr>
+        <tr><td>工作日晚间 × 1</td><td>60 分钟</td><td>文档整理、复盘输出</td></tr>
+        <tr><td>周末上午 × 1</td><td>3 h</td><td>深度开发或项目实践</td></tr>
+        <tr><td>周末下午 × 1</td><td>3 h</td><td>课程学习、源码研读</td></tr>
+        <tr><td>机动缓冲</td><td>1~2 h</td><td>补欠账，应对突发占用</td></tr>
+        <tr><td><strong>合计</strong></td><td><strong>10~11 h</strong></td><td>落在 8~12 小时区间内</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>内容路线（三层递进，不追热点）</strong></p>
+    <ol>
+      <li><strong>基础层（占 40%）</strong>：巩固 AI Agent 的核心工程能力——模型调用与上下文管理、工具与函数调用设计、Agent 编排与记忆机制、多智能体协作、RAG 工程化、评测与可观测性。判断标准是：能否独立把一个 Agent 从原型做到可交付。</li>
+      <li><strong>项目层（占 40%）</strong>：把基础层落到具体项目上。一个在跑的、能被别人使用的小项目，胜过十个笔记里的"学习计划"。要求每季度至少有一个可运行的项目产出。</li>
+      <li><strong>视野层（占 20%）</strong>：关注技术趋势、生态变化与同行实践，保持信息敏感度。但只做选择性吸收——连续读三篇行业分析后，必须产出一条自己的判断或一个待验证的假设。</li>
+    </ol>
+
+    <p><strong>防止无效投入的三条纪律</strong></p>
+    <ul>
+      <li>不追热点。项目驱动学习，不追新闻驱动学习。</li>
+      <li>不囤课程。开始任何一门课程前，先问"它会产出什么可交付的东西"。</li>
+      <li>每周五检查：本周实际投入是否达到 8 小时下限？若连续两周未达标，必须在月度复盘中给出原因和调整方案。</li>
+    </ul>
+
+    <h2 id="s3-2">3.2 家人朋友沟通：2~4 小时</h2>
+
+    <p>关系维护和身体锻炼一样，是<strong>长期复利资产</strong>，但它的特点是"当时感觉浪费时间，事后发现不可替代"。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>类型</th><th>时长</th><th>频率</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>家庭深度时间</td><td>60~120 分钟</td><td>每周 1 次</td><td>完整的一顿饭或一次共同活动，无手机</td></tr>
+        <tr><td>家人日常沟通</td><td>15~30 分钟</td><td>每周数次</td><td>通话或陪伴，已计入日维度</td></tr>
+        <tr><td>老朋友交流</td><td>60~90 分钟</td><td>每周 1 次</td><td>与 3.3 的社交重叠计算</td></tr>
+        <tr><td>线上联络</td><td>15~20 分钟</td><td>每周 2~3 次</td><td>问候与近况，非事务性</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>质量判定</strong>：有信息交换、有情感流动的交流算达成；只有事务性沟通（如"记得买菜"）不算。</p>
+
+    <p><strong>定期维护清单</strong>：每月联系 2 位半年以上未联系的朋友；每季度安排 1 次完整的家庭活动（旅行、聚餐、共同运动均可）。</p>
+
+    <h2 id="s3-3">3.3 有意义的社交：每周约见一位朋友</h2>
+
+    <p>笔记里"参加一次有意义的社交，每周约见一位朋友"是本周节奏中弹性最大的一项。它的价值不在社交本身，而在<strong>观点碰撞</strong>——长期与自己相似的人相处，会形成认知回音壁。</p>
+
+    <p><strong>选择标准</strong>：优先选择与你专业互补或人生阶段不同的人。理想配比是三类人各占三分之一——同行（懂你的领域）、跨界（带来不同视角）、前辈或后辈（带来不同时间尺度）。</p>
+
+    <p><strong>社交质量的三个判据</strong></p>
+    <ol>
+      <li>有没有产生新的观点或机会？</li>
+      <li>关系是否有真实的双向投入，而非单方面索取？</li>
+      <li>结束后是否想继续保持联系？</li>
+    </ol>
+
+    <p>三条中有两条为否，这次社交就基本没有价值——但可以降低频率，不必停止。</p>
+
+    <h2 id="s3-4">3.4 每周收口：周日 30 分钟周检</h2>
+
+    <p>每周日晚上用 30 分钟做一次轻量周检（这是月度完整复盘的轻量前置）。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>检查项</th><th>达成标准</th><th>本周实际</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>锻炼身体</td><td>≥ 5 次或累计 150 分钟</td><td></td></tr>
+        <tr><td>阅读</td><td>7 天均完成 30 分钟</td><td></td></tr>
+        <tr><td>静观复盘</td><td>7 天均完成</td><td></td></tr>
+        <tr><td>专业技能</td><td>≥ 8 小时</td><td></td></tr>
+        <tr><td>家人朋友沟通</td><td>≥ 2 小时</td><td></td></tr>
+        <tr><td>约见朋友</td><td>1 次</td><td></td></tr>
+        <tr><td>睡眠</td><td>平均 ≥ 7 小时</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>规则</strong>：本周达成 5 项以上 = 达标；4 项 = 警戒，需在周检中说明原因；≤ 3 项 = 触发调整，下一周优先补齐前三项。连续两周警戒即启动月度复盘提前。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-4">四、每月节律：把日子连成线</h1>
+
+    <h2 id="s4-1">4.1 完整月度复盘（占用一整天）</h2>
+
+    <p>笔记里"月度复盘：花一天时间，完整复盘"——这里的关键词是<strong>完整</strong>。不是抽半小时翻一翻，而是专门腾出一整天（约 6 小时有效时长）做一次严肃的检查。这应该是每月投入最大的单次时间块。</p>
+
+    <p><strong>日程安排</strong>：每月最后一个周六全天。上午做数据核对与事实回放，下午做分析与规划。</p>
+
+    <p><strong>上午（3 小时）：事实盘点</strong></p>
+    <ol>
+      <li><strong>目标回顾</strong>：月初设定的 3 件事，完成情况如何？逐条给出结论（完成 / 部分完成 / 未完成）及原因。</li>
+      <li><strong>时间账单</strong>：统计实际时间投入，与 1.2 的预算表逐项对比，找出最大偏差项。</li>
+      <li><strong>关键事件记录</strong>：本月 3 件最有影响的事（不论好坏），各自带来了什么后果。</li>
+      <li><strong>身体数据</strong>：体重、睡眠平均时长、运动次数、精力曲线（周维度打分）。</li>
+    </ol>
+
+    <p><strong>下午（3 小时）：分析与规划</strong></p>
+    <ol start="5">
+      <li><strong>方法论复盘</strong>：本月哪件事做得好？好在哪一步？能不能复制到其他事上？</li>
+      <li><strong>失败归因</strong>：哪件事没做成？归因到"能力不足"还是"环境不允许"还是"目标本身不合理"？三者的应对方式完全不同。</li>
+      <li><strong>认知更新</strong>：这个月改变了我的哪一个判断？有没有推翻过去的某个想法？</li>
+      <li><strong>下月规划</strong>：设定 3 件事（不是 5 件，不是 10 件），每件给出可交付的验证标准与时间节点。</li>
+      <li><strong>系统调整</strong>：本月执行中发现的计划缺陷是什么？下月修改哪一条？</li>
+    </ol>
+
+    <p><strong>产出物</strong>：一页《月度复盘报告》，包含数据表、三条结论、下月三件事、下月唯一的关键突破点。这份报告是年度复盘的原料。</p>
+
+    <h2 id="s4-2">4.2 读完一本书</h2>
+
+    <p>一个月一本书，是约 12 本 / 年的节奏。放在月度而不是日度，是因为一本书的完整消化需要连续的上下文——每天 30 分钟读，同一本书可能要拖三个月读完，最后什么都留不下。</p>
+
+    <p><strong>执行要点</strong></p>
+    <ul>
+      <li><strong>读完比读快重要</strong>。允许自己读得慢，但不允许半途而废。</li>
+      <li><strong>主题轮换</strong>：经济 → 历史 → 专业 → 回到经济。一个循环三个月，三本书构成一个认知三角。</li>
+      <li><strong>输出约束</strong>：每本书一句话总结 + 一个具体行动。若写不出行动，说明这本书没能给你东西，应当在下个月换一本更相关的。</li>
+      <li><strong>书单储备</strong>：永远保持后 2 本的候选，避免临时挑书消耗决策能量。</li>
+    </ul>
+
+    <h2 id="s4-3">4.3 精神食粮：一部电影或一次深度对话</h2>
+
+    <p>笔记里写的是"看一部有意义的电影 / 或去问道会 / 聊天"。这两个选项功能相同——用别人的故事激活自己的认知。</p>
+
+    <p><strong>选择标准</strong>：避开纯粹的娱乐消遣（刷短视频式观影），选择有以下属性的内容。</p>
+    <ul>
+      <li>有陌生的文化背景或视角</li>
+      <li>讨论真实的两难处境而非简单善恶</li>
+      <li>看完后会有一段时间不说话</li>
+    </ul>
+
+    <p><strong>"深度对话"选项</strong>：约一位能就某个具体问题深入讨论的人（不是泛泛的社交），提前准备 2~3 个问题，约定 60~90 分钟。形式可以是线下的读书会、行业沙龙，也可以是在线的深度访谈。</p>
+
+    <p><strong>执行频率建议</strong>：12 次 / 年全量投入（如每月一次），其余时间正常娱乐，不必愧疚。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-5">五、每年节律：一次彻底的重新校准</h1>
+
+    <h2 id="s5-1">5.1 年度定位与规划</h2>
+
+    <p>这是整个体系中<strong>唯一需要一整天以上</strong>的深度工作，建议安排在年末的两天（12 月最后一个周末），一次性完成。</p>
+
+    <p><strong>第一步：年度事实盘点（0.5 天）</strong></p>
+    <ul>
+      <li>本年度四项节奏指标的实际达成率（身体 / 认知 / 专业 / 关系各列出总时长与达成率）</li>
+      <li>年度最重要的一件事：是什么？为什么？</li>
+      <li>年度最大的一个错误：是什么？代价是什么？</li>
+      <li>年度读过的书、见过的电影、去过的地方清单</li>
+    </ul>
+
+    <p><strong>第二步：主线重设（0.5 天）</strong></p>
+    <ul>
+      <li><strong>年度关键词</strong>：用 3 个词概括下一年度（如"深度、健康、扩展"）</li>
+      <li><strong>主线取舍</strong>：列出当前所有在做的事，标出哪 3 件真正服务主线、哪几件只是惯性。砍掉不服务主线的部分，这是全年最有价值的一次减法。</li>
+      <li><strong>健康与体检安排</strong>：确认明年体检时间、重要家庭节点、职业节点</li>
+      <li><strong>财务与出行计划</strong>：1~2 次出行的目的地与时间窗</li>
+    </ul>
+
+    <p><strong>第三步：输出年度计划文档（0.5 天）</strong>：形成一页纸的《年度定位》，包含关键词、三个年度目标、四个节奏指标的年度量化目标、需要提前锁定的资源（时间、预算、支持者）。</p>
+
+    <h2 id="s5-2">5.2 去 1~2 个没去过的地方</h2>
+
+    <p>出行的价值不在"打卡"，在于<strong>认知环境的切换</strong>。长期在熟悉环境中生活，会形成思维定式。陌生的地理环境能提供一种低成本的"认知解离"。</p>
+
+    <p><strong>选择建议</strong></p>
+    <ul>
+      <li>每年 1~2 次，单次 3~5 天为宜（太长会影响工作，太短没有切换感）</li>
+      <li>优先选择生活方式差异大的地方，而非单纯景点多的地方</li>
+      <li>出行前不带工作，出行中不排会议——否则失去切换的意义</li>
+    </ul>
+
+    <h2 id="s5-3">5.3 做一次全面体检</h2>
+
+    <p>这是这份笔记里最容易被推迟、也最不该被推迟的一项。建议固定在每年同一个月份（如生日月），便于纵向对比历史数据。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>类别</th><th>建议检查项</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>常规</td><td>血常规、尿常规、肝肾功能、血脂、血糖</td></tr>
+        <tr><td>影像</td><td>胸部低剂量 CT（吸烟史）、腹部超声、颈椎 / 腰椎评估</td></tr>
+        <tr><td>专项</td><td>血压、眼底、胃部（结合个人史）、肿瘤标志物（结合年龄与家族史）</td></tr>
+        <tr><td>生活方式</td><td>体脂率、骨密度（40 岁后建议）、视力和听力</td></tr>
+        <tr><td>心理</td><td>情绪状态与压力水平评估</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>原则</strong>：查出来就处理，不查就永远悬着。这项投入的时间成本不到一天，但它是所有其他计划项的<strong>物理前提</strong>。</p>
+
+    <h2 id="s5-4">5.4 买一件喜欢的东西 / 培养一个新技能</h2>
+
+    <p>这一条在整份计划里最"软"，但它承担着一个不可替代的功能：<strong>让长期的自我约束有一个即时的奖励出口</strong>。</p>
+
+    <p><strong>两种形态，各有其用</strong></p>
+    <ul>
+      <li><strong>买一件喜欢的东西</strong>：用于即时奖励，适合在完成某个高强度目标后使用。原则是"只买一件，且这笔钱不影响储蓄与家庭预算"。</li>
+      <li><strong>培养一个新技能</strong>：用于长期加分，建议选择与第三章专业方向不同类的技能（如一门乐器、一项手工、一种运动、一种语言）。跨领域的技能能改善思维方式。</li>
+    </ul>
+
+    <p><strong>执行原则</strong>：一年只做一件。贪多会让这项变成又一个半途而废的清单。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-6">六、支撑系统：让计划不塌的四个零件</h1>
+
+    <p>前三章定义了"做什么"，这一章定义"靠什么不放弃"。持续失败的个人计划，问题从来不在目标定得不对，而在于<strong>缺少执行机制</strong>。</p>
+
+    <h2 id="s6-1">6.1 记录系统：能看见才有效</h2>
+
+    <p><strong>最小可行记录</strong>：一本手写笔记本或一个固定笔记 App，每天 6 项勾选（锻炼 / 阅读 / 复盘 / 陪伴 / 睡眠 / 学习时长），每周一次周检，每月一份复盘报告。</p>
+
+    <p><strong>为什么不推荐工具堆砌</strong>：工具越复杂，放弃成本越高。记录的唯一目的是让坚持变得可见，一旦开始配置系统，这件事本身就变成了新的负担。纸笔或单一 App 是最优解。</p>
+
+    <p><strong>关键设计</strong>：记录必须在行为发生后立即完成，而不是晚上补记。补记会演变成编造，最终失去参考价值。</p>
+
+    <h2 id="s6-2">6.2 习惯叠加：绑定已有习惯</h2>
+
+    <p>新习惯最常见的死法是"作为一个独立的决定存在"——需要额外的意志力去启动。习惯叠加策略是把它绑在已有习惯后面。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>新习惯</th><th>绑定对象</th><th>触发语</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>晨练</td><td>起床后第一件事</td><td>起床 → 换运动服</td></tr>
+        <tr><td>晚间阅读</td><td>晚饭后</td><td>收碗 → 坐下读书</td></tr>
+        <tr><td>专业学习</td><td>通勤结束 / 进入书房</td><td>坐下 → 开电脑</td></tr>
+        <tr><td>睡前复盘</td><td>洗漱完成后</td><td>洗漱 → 笔记本</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>原则：新习惯必须紧跟旧习惯，中间不能插入其他选择。</strong></p>
+
+    <h2 id="s6-3">6.3 弹性规则：允许滑坡，禁止崩塌</h2>
+
+    <p>现实一定会有出差、加班、生病、家庭变故。计划如果不预先定义"滑坡"的处理方式，就会在第一个断档时崩掉。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>中断类型</th><th>定义</th><th>处理方式</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>轻微滑坡</td><td>单日或单周未达标</td><td>无需补偿，从下一天 / 下一周正常恢复即可</td></tr>
+        <tr><td>中度滑坡</td><td>连续两周未达标</td><td>启动"最小版本"：运动降到 10 分钟、阅读降到 15 分钟，只求不断</td></tr>
+        <tr><td>严重滑坡</td><td>连续一个月未达标</td><td>触发一次专门的调整日，重新评估计划本身是否合理</td></tr>
+        <tr><td>创伤性中断</td><td>疾病、重大变故、出差密集期</td><td>主动豁免本期，不做任何补偿，中断后直接从"最小版本"重启</td></tr>
+      </tbody>
+    </table>
+
+    <p class="callout-info"><strong>核心原则</strong>　不要在断档时补偿。补偿性加练（少运动一天就多做两小时）几乎必然导致过度负荷和彻底放弃。正确做法是"少做，但不断"。</p>
+
+    <h2 id="s6-4">6.4 问责机制：让承诺具备外部性</h2>
+
+    <p>完全私人的承诺极易瓦解。可选的低成本问责方式如下。</p>
+    <ol>
+      <li><strong>公开承诺</strong>：在年度计划确定时，把三个年度目标发给一位重要的人（家人、朋友、同事）。</li>
+      <li><strong>周检留痕</strong>：周检表存档，月末翻看，一整月的痕迹比任何自我评价都有说服力。</li>
+      <li><strong>月度报告</strong>：把月度复盘报告发给那位"监督者"（可匿名，只发数据部分）。</li>
+      <li><strong>环境问责</strong>：加入一个学习社群，或固定与一位同频的人结对打卡。</li>
+    </ol>
+
+    <p><strong>提问式自查</strong>：当你想放弃某个环节时，不要问"要不要坚持"，而问"如果我在年度复盘时怎么解释这一项的空白"。这个问题的答案通常比意志力更有效。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-7">七、启动方案：第一周怎么开始</h1>
+
+    <p>计划最大的敌人不是强度，而是<strong>启动成本</strong>。所以第一周不做全量执行，只做三件事。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>天数</th><th>任务</th><th>目标</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第 1~2 天</td><td>只做：睡眠 + 阅读 30 分钟 + 静观复盘 15 分钟</td><td>建立最小连续性</td></tr>
+        <tr><td>第 3~4 天</td><td>加入：锻炼 30 分钟 + 陪伴交流 15 分钟</td><td>补齐身体与关系两项</td></tr>
+        <tr><td>第 5~7 天</td><td>加入：专业技能 1 个 90 分钟时间块</td><td>启动最高杠杆项</td></tr>
+        <tr><td>第 7 天</td><td>做一次 30 分钟周检</td><td>完成第一个"闭环"</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>第一周不做的事</strong>：不追求任何一项达到全量标准，不修改计划，不做年度规划，不买任何记录工具（用现有的纸笔即可）。</p>
+
+    <p class="callout-info"><strong>第一个月的目标只有一个</strong>　把每天的 6 项记录连续打满 25 天。到这个目标达成，这份计划就从"纸上的东西"变成了"生活的一部分"。</p>
+
+    <div class="section-divider"></div>
+
+    <h1 id="section-8">附录：可打印的执行清单</h1>
+
+    <h2>附录 A：每日清单</h2>
+
+    <pre class="checklist">□ 锻炼身体 30 分钟
+□ 阅读 30 分钟（温故 10 + 精进 15 + 拓展 5）
+□ 午间静观复盘 15 分钟
+□ 睡前静观复盘 15 分钟
+□ 陪伴与口语交流 15 分钟
+□ 睡眠 7~8 小时</pre>
+
+    <h2>附录 B：每周清单</h2>
+
+    <pre class="checklist">□ 专业技能累计 ≥ 8 小时（目标 10~11 小时）
+□ 家人朋友沟通 ≥ 2 小时
+□ 约见一位朋友
+□ 锻炼 ≥ 5 次 / 累计 150 分钟
+□ 睡眠周平均 ≥ 7 小时
+□ 周日 30 分钟周检完成</pre>
+
+    <h2>附录 C：月度清单</h2>
+
+    <pre class="checklist">□ 月末完整复盘一天（约 6 小时）
+□ 读完一本书并写出一句话总结 + 一个行动
+□ 一部电影或一次深度对话
+□ 检查四个节奏指标的达成率
+□ 设定下月三件事及验证标准</pre>
+
+    <h2>附录 D：年度清单</h2>
+
+    <pre class="checklist">□ 年度定位与规划（1~1.5 天）
+□ 三个年度目标 + 四个节奏指标的年度量化值
+□ 主线取舍：砍掉不服务主线的惯性事务
+□ 去 1~2 个没去过的地方
+□ 一次全面体检
+□ 买一件自己喜欢的东西 或 培养一个新技能</pre>
+
+    <h2>结语</h2>
+
+    <p>这页手写笔记最动人的地方，是它<strong>没有写"我要成为什么样的人"，只写了"我每天 / 每周 / 每月 / 每年要做些什么"</strong>。这是一个正确的优先级——宏大的志向无法执行，而具体的动作可以。志向决定方向，动作决定结果。</p>
+
+    <p>这份计划对它的唯一扩展，是给这些动作加上了三样东西：<strong>刻度</strong>（让你知道做到了没有）、<strong>缓冲</strong>（让你在意外中活下来）、<strong>机制</strong>（让你不必依赖意志力）。</p>
+
+    <p>接下来的事情很简单：把它打印出来，放在能看到的地方，然后从今天开始打第一个勾。</p>
+
+  </section>
+</body>
+</html>

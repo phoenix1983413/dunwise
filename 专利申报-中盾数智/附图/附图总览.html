@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>专利附图总览 · 中盾数智</title>
+<style>
+:root{
+  --bg:#0A0C0E; --surface:#12161A; --line:rgba(255,255,255,.09);
+  --tx:#E9EDF0; --tx-2:#98A2AA; --tx-3:#6B757C; --teal:#3DD8AC;
+  --serif:"Songti SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased}
+header{max-width:1100px;margin:0 auto;padding:56px 40px 28px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.26em;color:var(--teal);margin-bottom:18px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);line-height:1.2;margin-bottom:14px}
+header p{color:var(--tx-2);font-size:14.5px;max-width:720px}
+main{max-width:1100px;margin:0 auto;padding:0 40px 100px}
+.sec{margin-top:56px}
+.sec-head{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.sec-head .n{font-family:var(--mono);font-size:12px;color:var(--teal)}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:22px}
+.fig{background:#fff;border-radius:3px;padding:22px;margin-bottom:26px}
+.fig img{display:block;width:100%;height:auto}
+.cap{display:flex;align-items:baseline;gap:12px;margin:14px 2px 0}
+.cap .id{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--teal)}
+.cap .t{font-size:14px;color:var(--tx)}
+.cap .d{font-family:var(--mono);font-size:11px;color:var(--tx-3);margin-left:auto}
+.note{margin-top:34px;padding:20px 24px;border:1px solid rgba(232,180,87,.3);background:rgba(232,180,87,.08);border-radius:3px;font-size:14px;color:var(--tx-2)}
+.note b{color:#E8B457;display:block;margin-bottom:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:400}
+footer{max-width:1100px;margin:0 auto;padding:0 40px 60px;color:var(--tx-3);font-size:12px;font-family:var(--mono);letter-spacing:.1em}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<header>
+  <p class="kicker">Patent Drawings · 附图总览</p>
+  <h1>中盾数智 · 双件专利附图</h1>
+  <p>件一 5 张、件二 4 张，共 9 张。黑白线条稿，含附图标记，已与说明书「附图说明」与「附图标记说明」逐项对应。以下为示意稿，递交前须由代理机构按绘图规范重绘。</p>
+</header>
+
+<main>
+  <div class="sec">
+    <div class="sec-head"><span class="n">件一</span><h2>多源异构执法设备的事件时间对齐与监督样本自动生成</h2></div>
+
+    <div class="fig"><img src="件一-图1-系统总体架构.svg" alt="件一 图1"></div>
+    <div class="cap"><span class="id">图 1</span><span class="t">系统总体架构示意图</span><span class="d">模块 1~8 及单元 11/12/13、41~44、61~63</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件一-图2-锚点双印记时序对齐原理.svg" alt="件一 图2"></div>
+    <div class="cap"><span class="id">图 2</span><span class="t">锚点事件的双印记时序对齐原理示意图</span><span class="d">核心创新点一</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件一-图3-轨迹与过程模型对齐方案.svg" alt="件一 图3"></div>
+    <div class="cap"><span class="id">图 3</span><span class="t">轨迹与过程模型之间的对齐方案示意图</span><span class="d">n_s=8 / n_m=1 / n_l=1</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件一-图4-监督标签与标签权重生成流程.svg" alt="件一 图4"></div>
+    <div class="cap"><span class="id">图 4</span><span class="t">监督标签与标签权重生成流程图</span><span class="d">核心创新点二</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件一-图5-训练样本数据结构.svg" alt="件一 图5"></div>
+    <div class="cap"><span class="id">图 5</span><span class="t">训练样本数据结构示意图</span><span class="d">含 clock_calib 与 provenance</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head"><span class="n">件二</span><h2>轨迹数据的可回放封装与能力受控接入</h2></div>
+
+    <div class="fig"><img src="件二-图1-系统总体架构.svg" alt="件二 图1"></div>
+    <div class="cap"><span class="id">图 1</span><span class="t">系统总体架构示意图</span><span class="d">模块 20~90 及单元 21~23、31/32、41~43、51/52、61~65</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件二-图2-外部依赖分类判定流程.svg" alt="件二 图2"></div>
+    <div class="cap"><span class="id">图 2</span><span class="t">外部依赖分类判定与处理约定生成流程图</span><span class="d">副作用优先判定</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件二-图3-环境快照数据结构.svg" alt="件二 图3"></div>
+    <div class="cap"><span class="id">图 3</span><span class="t">环境快照数据结构示意图</span><span class="d">处理约定与可复现性度量</span></div>
+
+    <div class="fig" style="margin-top:40px"><img src="件二-图4-能力契约与调用意图校验流程.svg" alt="件二 图4"></div>
+    <div class="cap"><span class="id">图 4</span><span class="t">能力契约字段结构与调用意图校验流程图</span><span class="d">核心创新点</span></div>
+  </div>
+
+  <div class="note">
+    <b>递交前必须处理</b>
+    本组附图为 SVG 示意稿，用于向代理机构传达发明构思与附图内容。正式递交前须由代理机构或制图员按《专利审查指南》绘图规范重绘：黑白线条、线宽均匀、无灰度无阴影无底纹、A4 幅面留足页边距、附图中除必要词语与附图标记外不加注释。
+  </div>
+</main>
+
+<footer>中盾数智 · 专利申报文件包 v1.0 · 2026-09-20</footer>
+</body>
+</html>

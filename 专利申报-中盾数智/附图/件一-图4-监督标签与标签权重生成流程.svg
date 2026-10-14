@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 980" width="900" height="980">
+<rect x="0" y="0" width="900" height="980" fill="#ffffff"/>
+<defs>
+<marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0.5 L10 5 L0 9.5 Z" fill="#000000"/>
+</marker>
+</defs>
+
+<g stroke="#000000" stroke-width="1.6" fill="#ffffff">
+<rect x="250" y="40" width="400" height="70"/>
+<rect x="700" y="40" width="170" height="70"/>
+
+<rect x="300" y="160" width="300" height="70"/>
+<rect x="700" y="160" width="170" height="70"/>
+
+<rect x="250" y="280" width="400" height="70"/>
+
+<rect x="40" y="430" width="195" height="80"/>
+<rect x="245" y="430" width="195" height="80"/>
+<rect x="450" y="430" width="195" height="80"/>
+<rect x="655" y="430" width="195" height="80"/>
+
+<rect x="200" y="600" width="500" height="80"/>
+<rect x="230" y="730" width="440" height="80"/>
+<rect x="280" y="860" width="340" height="80"/>
+</g>
+
+<g stroke="#000000" stroke-width="1.6" fill="none">
+<path d="M450 110 L450 156" marker-end="url(#a4)"/>
+<path d="M650 75 L696 75" marker-end="url(#a4)"/>
+<path d="M785 110 L785 156" marker-end="url(#a4)"/>
+<path d="M450 230 L450 276" marker-end="url(#a4)"/>
+<path d="M450 350 L450 382 L137 382 L137 426" marker-end="url(#a4)"/>
+<path d="M450 350 L450 382 L342 382 L342 426" marker-end="url(#a4)"/>
+<path d="M450 350 L450 382 L547 382 L547 426" marker-end="url(#a4)"/>
+<path d="M450 350 L450 382 L752 382 L752 426" marker-end="url(#a4)"/>
+<path d="M137 510 L137 560 L450 560 L450 596" marker-end="url(#a4)"/>
+<path d="M342 510 L342 560" />
+<path d="M547 510 L547 560 L450 560"/>
+<path d="M752 510 L752 560 L450 560"/>
+<path d="M450 680 L450 726" marker-end="url(#a4)"/>
+<path d="M450 810 L450 856" marker-end="url(#a4)"/>
+</g>
+
+<g fill="#000000" font-family="SimSun, Songti SC, serif" font-size="17" text-anchor="middle">
+<text x="450" y="82">对齐方案 γ</text>
+<text x="785" y="70">63 偏离子序列</text>
+<text x="785" y="94">提取单元</text>
+<text x="785" y="190">最小区分性</text>
+<text x="785" y="214">偏离子序列</text>
+
+<text x="450" y="202">统计 n_s、n_m、n_l</text>
+<text x="450" y="322">依据 n_m 与 n_l 是否为零判定</text>
+
+<text x="137" y="460">n_m＝0，n_l＝0</text>
+<text x="137" y="488">正常过程标签</text>
+<text x="342" y="460">n_m＞0，n_l＝0</text>
+<text x="342" y="488">漏执行标签</text>
+<text x="547" y="460">n_l＞0，n_m＝0</text>
+<text x="547" y="488">越界动作标签</text>
+<text x="752" y="460">n_m＞0，n_l＞0</text>
+<text x="752" y="488">复合偏离标签</text>
+
+<text x="450" y="628">61 偏离度计算单元</text>
+<text x="450" y="658" font-size="15">计算 D(σ)＝(w_m·n_m＋w_l·n_l)/(n_s＋n_m＋n_l)</text>
+
+<text x="450" y="758">62 标签映射单元</text>
+<text x="450" y="788" font-size="15">按预设单调递增映射关系确定标签权重</text>
+
+<text x="450" y="896">输出监督标签与标签权重</text>
+
+<text x="450" y="946" font-size="16">图 4</text>
+</g>
+</svg>

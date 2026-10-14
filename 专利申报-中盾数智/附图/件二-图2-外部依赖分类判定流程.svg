@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 830" width="900" height="830">
+<rect x="0" y="0" width="900" height="830" fill="#ffffff"/>
+<defs>
+<marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0 0.5 L10 5 L0 9.5 Z" fill="#000000"/>
+</marker>
+</defs>
+
+<g stroke="#000000" stroke-width="1.6" fill="#ffffff">
+<rect x="300" y="40" width="320" height="64"/>
+<rect x="300" y="150" width="320" height="64"/>
+<rect x="300" y="290" width="320" height="64"/>
+<rect x="300" y="430" width="320" height="64"/>
+<rect x="300" y="570" width="320" height="64"/>
+<rect x="300" y="710" width="320" height="64"/>
+<rect x="676" y="150" width="204" height="64"/>
+<rect x="676" y="290" width="204" height="64"/>
+<rect x="676" y="430" width="204" height="64"/>
+<rect x="676" y="570" width="204" height="64"/>
+</g>
+
+<g stroke="#000000" stroke-width="1.6" fill="none">
+<path d="M460 104 L460 146" marker-end="url(#b2)"/>
+<path d="M460 214 L460 286" marker-end="url(#b2)"/>
+<path d="M460 354 L460 426" marker-end="url(#b2)"/>
+<path d="M460 494 L460 566" marker-end="url(#b2)"/>
+<path d="M460 634 L460 706" marker-end="url(#b2)"/>
+
+<path d="M620 182 L672 182" marker-end="url(#b2)"/>
+<path d="M620 322 L672 322" marker-end="url(#b2)"/>
+<path d="M620 462 L672 462" marker-end="url(#b2)"/>
+<path d="M620 602 L672 602" marker-end="url(#b2)"/>
+</g>
+
+<g fill="#000000" font-family="SimSun, Songti SC, serif" font-size="17" text-anchor="middle">
+<text x="460" y="78">外部依赖</text>
+<text x="460" y="188">含写入／下发／控制类操作？</text>
+<text x="460" y="328">相同输入重复调用输出一致？</text>
+<text x="460" y="468">输出与外部存储的取值相关？</text>
+<text x="460" y="608">输出随模型／提示词／配置版本变化？</text>
+<text x="460" y="748">不可分类依赖（按桩定义处理）</text>
+
+<text x="778" y="174" font-size="16">副作用依赖</text>
+<text x="778" y="198" font-size="14">生成桩定义</text>
+<text x="778" y="314" font-size="16">纯函数依赖</text>
+<text x="778" y="338" font-size="14">记录参数与返回值</text>
+<text x="778" y="454" font-size="16">状态依赖</text>
+<text x="778" y="478" font-size="14">记录状态与来源标识</text>
+<text x="778" y="594" font-size="16">版本依赖</text>
+<text x="778" y="618" font-size="14">记录版本标识</text>
+
+<text x="646" y="174" font-size="15" text-anchor="start">是</text>
+<text x="646" y="314" font-size="15" text-anchor="start">是</text>
+<text x="646" y="454" font-size="15" text-anchor="start">是</text>
+<text x="646" y="594" font-size="15" text-anchor="start">是</text>
+
+<text x="474" y="256" font-size="15" text-anchor="start">否</text>
+<text x="474" y="396" font-size="15" text-anchor="start">否</text>
+<text x="474" y="536" font-size="15" text-anchor="start">否</text>
+<text x="474" y="676" font-size="15" text-anchor="start">否</text>
+
+<text x="450" y="806" font-size="16">图 2</text>
+</g>
+</svg>
