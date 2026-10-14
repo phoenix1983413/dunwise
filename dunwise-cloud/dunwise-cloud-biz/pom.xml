@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dunwise</groupId>
+        <artifactId>dunwise-cloud</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dunwise-cloud-biz</artifactId>
+    <packaging>pom</packaging>
+    <name>Dunwise Cloud Biz</name>
+    <description>Business service (api/biz/start layers)</description>
+
+    <modules>
+        <module>dunwise-cloud-biz-api</module>
+        <module>dunwise-cloud-biz-biz</module>
+        <module>dunwise-cloud-biz-start</module>
+    </modules>
+</project>

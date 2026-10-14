@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: dunwise-boot
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  type-aliases-package: com.dunwise.boot.api.entity
+
+dunwise:
+  security:
+    jwt:
+      secret: ${DUNWISE_JWT_SECRET:defaultSecretKeyForDevelopmentOnly12345678901234567890}
+      expiration: 86400000
+      header: Authorization
+    login:
+      max-attempts: 5
+      lock-duration: 1800
+  minio:
+    enabled: true
+    endpoint: http://localhost:9000
+    access-key: minioadmin
+    secret-key: minioadmin
+    bucket-name: dunwise
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

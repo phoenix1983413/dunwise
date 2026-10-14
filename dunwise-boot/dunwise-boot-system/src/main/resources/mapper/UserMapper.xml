@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dunwise.boot.system.mapper.UserMapper">
+
+    <select id="findByUsername" resultType="com.dunwise.boot.system.entity.User">
+        SELECT id, username, nickname, email, phone, password, avatar, sex, status,
+               last_login_time, last_login_ip, tenant_id, create_time, update_time,
+               create_by, update_by, deleted, version
+        FROM sys_user
+        WHERE username = #{username}
+          AND deleted = FALSE
+          AND tenant_id = COALESCE(#{tenantId}, '000000')
+        LIMIT 1
+    </select>
+
+    <select id="selectUserRoleInfo" resultType="java.util.Map">
+        SELECT r.id, r.name, r.code
+        FROM sys_role r
+        INNER JOIN sys_user_role ur ON ur.role_id = r.id
+        WHERE ur.user_id = #{userId}
+          AND r.deleted = FALSE
+    </select>
+
+</mapper>
